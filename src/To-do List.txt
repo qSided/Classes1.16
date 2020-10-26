@@ -1,0 +1,2 @@
+Add player attribute modifiers
+Implement class xp boosters (When added to pmmo)

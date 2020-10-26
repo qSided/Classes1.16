@@ -1,0 +1,48 @@
+modLoader="javafml" #mandatory
+
+loaderVersion="[34,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+
+license="All rights reserved"
+
+issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/classes-pmmo/issues" #optional
+
+[[mods]] #mandatory
+
+modId="classes" #mandatory
+
+version="1.16.3-1.1.0" #mandatory
+
+displayName="Classes" #mandatory
+
+updateJSONURL="http://myurl.me/" #optional
+
+displayURL="https://www.curseforge.com/minecraft/mc-mods/classes-pmmo" #optional
+
+logoFile="example.png" #optional
+
+credits="Thanks to Daddy_P1G and deezer911 for the idea! Thanks to Dawnless for extra ideas!" #optional
+
+authors="qSided" #optional
+
+description='''
+A simple classes mod by qSided for Project MMO by Harmonised.
+'''
+
+[[dependencies.examplemod]] #optional
+# the modid of the dependency
+modId="forge" #mandatory
+# Does this dependency have to exist - if not, ordering below must be specified
+mandatory=true #mandatory
+# The version range of the dependency
+versionRange="[34,)" #mandatory
+# An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+ordering="NONE"
+# Side this dependency is applied on - BOTH, CLIENT or SERVER
+side="BOTH"
+# Here's another dependency
+[[dependencies.examplemod]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.16.3]"
+ordering="NONE"
+side="BOTH"

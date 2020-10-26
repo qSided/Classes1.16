@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.qsided.classesmod.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "classes.refmap.json",
+  "mixins": [
+  ],
+  "server":[
+  ],
+  "client":[
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}
