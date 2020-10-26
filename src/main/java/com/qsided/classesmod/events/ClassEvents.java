@@ -26,21 +26,20 @@ public class ClassEvents extends ClassesMod.GuiElement {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
             if (serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem && ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("LUMBERJACK")) {
                 serverPlayer.addPotionEffect(new EffectInstance(Effects.HASTE, 60, 0));
-                ClassesMod.LOGGER.info("Successfully applied haste to Lumberjack: " + serverPlayer.getDisplayName());
             }
         }
         if (entity instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
             if (serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof PickaxeItem && ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("MINER")) {
                 serverPlayer.addPotionEffect(new EffectInstance(Effects.HASTE, 60, 0));
-                ClassesMod.LOGGER.info("Successfully applied haste to Miner: " + serverPlayer.getDisplayName());
             }
         }
         if (entity instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
-            if (serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof SwordItem || serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem && ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("WARRIOR")) {
-                serverPlayer.addPotionEffect(new EffectInstance(Effects.STRENGTH, 60, 0));
-                ClassesMod.LOGGER.info("Successfully applied strength to Warrior: " + serverPlayer.getDisplayName());
+            if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("WARRIOR")){
+                if (serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof SwordItem || serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) {
+                    serverPlayer.addPotionEffect(new EffectInstance(Effects.STRENGTH, 60, 0));
+                }
             }
         }
     }
