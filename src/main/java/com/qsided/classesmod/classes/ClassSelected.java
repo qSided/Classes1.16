@@ -14,6 +14,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static harmonised.pmmo.skills.Skill.*;
 import static net.minecraft.item.Items.*;
@@ -28,162 +29,149 @@ public class ClassSelected extends ClassesMod.GuiElement {
     public static void setClassLJ(Map<String, Object> dependencies1) {
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
             ItemStack giveAxe = new ItemStack(STONE_AXE, (int) (1));
             ItemStack giveLogs = new ItemStack(OAK_LOG, (int) (1));
-            if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer) == "NO_CLASS") {
-                serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.GOLD + "Lumberjack"), false);
-                Skill.WOODCUTTING.addLevel(serverPlayer.getUniqueID(), 10, "selectedClassLJ", false, true);
-                Skill.CRAFTING.addLevel(serverPlayer.getUniqueID(), 5, "selectedClassLJ", false, true);
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS")) {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.GOLD + "Lumberjack"), false);
+                Skill.WOODCUTTING.addLevel(player.getUniqueID(), 10, "selectedClassLJ", false, true);
+                Skill.CRAFTING.addLevel(player.getUniqueID(), 5, "selectedClassLJ", false, true);
                 giveAxe.setCount((int) 1);
-                ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveAxe);
+                ItemHandlerHelper.giveItemToPlayer((player), giveAxe);
                 giveLogs.setCount((int) 12);
-                ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveLogs);
-                ClassesSavedData.get(serverPlayer.server).setPlayerClass(serverPlayer, "LUMBERJACK");
+                ItemHandlerHelper.giveItemToPlayer((player), giveLogs);
+                ClassesSavedData.get(player.server).setPlayerClass(player, "LUMBERJACK");
                 classXpBooster.put(WOODCUTTING, 10.0);
-                Config.setPlayerXpBoost(serverPlayer, "classes.lumberjack", classXpBooster);
-                serverPlayer.closeScreen();
-            } else {
-                serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
-                serverPlayer.closeScreen();
+                Config.setPlayerXpBoost(player, "classes.lumberjack", classXpBooster);
             }
+            else {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
+            }
+            player.closeScreen();
         }
     }
 
     public static void setClassM(Map<String, Object> dependencies1) {
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
             ItemStack givePickaxe = new ItemStack(Items.STONE_PICKAXE, (int) (1));
             ItemStack giveTorches = new ItemStack(Items.TORCH, (int) (1));
-            if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer) == "NO_CLASS") {
-                if (entity instanceof PlayerEntity) {
-                    serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.AQUA + "Miner"), false);
-                    MINING.addLevel(serverPlayer.getUniqueID(), 10, "something", false, true);
-                    Skill.EXCAVATION.addLevel(serverPlayer.getUniqueID(), 5, "something1", false, true);
-                    givePickaxe.setCount((int) 1);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), givePickaxe);
-                    giveTorches.setCount((int) 16);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveTorches);
-                    ClassesSavedData.get(serverPlayer.server).setPlayerClass(serverPlayer, "MINER");
-                    classXpBooster.put(MINING, 10.0);
-                    Config.setPlayerXpBoost(serverPlayer, "classes.miner", classXpBooster);
-                    serverPlayer.closeScreen();
-
-                }
-            } else {
-                serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
-                serverPlayer.closeScreen();
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS")) {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.AQUA + "Miner"), false);
+                MINING.addLevel(player.getUniqueID(), 10, "something", false, true);
+                Skill.EXCAVATION.addLevel(player.getUniqueID(), 5, "something1", false, true);
+                givePickaxe.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), givePickaxe);
+                giveTorches.setCount((int) 16);
+                ItemHandlerHelper.giveItemToPlayer((player), giveTorches);
+                ClassesSavedData.get(player.server).setPlayerClass(player, "MINER");
+                classXpBooster.put(MINING, 10.0);
+                Config.setPlayerXpBoost(player, "classes.miner", classXpBooster);
             }
+            else {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
+            }
+            player.closeScreen();
         }
     }
 
     public static void setClassW(Map<String, Object> dependencies1) {
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
             ItemStack giveStoneSword = new ItemStack(STONE_SWORD, (int) (1));
             ItemStack giveShield = new ItemStack(SHIELD, (int) (1));
-            if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer) == "NO_CLASS") {
-                if (entity instanceof PlayerEntity) {
-                    serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.RED + "Warrior"), false);
-                    Skill.COMBAT.addLevel(serverPlayer.getUniqueID(), 10, "something", false, true);
-                    Skill.ENDURANCE.addLevel(serverPlayer.getUniqueID(), 5, "something1", false, true);
-                    giveStoneSword.setCount((int) 1);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveStoneSword);
-                    giveShield.setCount((int) 1);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveShield);
-                    ClassesSavedData.get(serverPlayer.server).setPlayerClass(serverPlayer, "WARRIOR");
-                    classXpBooster.put(COMBAT, 10.0);
-                    Config.setPlayerXpBoost(serverPlayer, "classes.warrior", classXpBooster);
-                    Float speed = serverPlayer.abilities.getWalkSpeed();
-                    serverPlayer.abilities.setWalkSpeed((float) (speed - 0.05));
-                    ClassesMod.LOGGER.info("Successfully set player's speed to " + "[" + speed + "]");
-                    serverPlayer.closeScreen();
-                }
-            } else {
-                serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
-                serverPlayer.closeScreen();
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS")) {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.RED + "Warrior"), false);
+                Skill.COMBAT.addLevel(player.getUniqueID(), 10, "something", false, true);
+                Skill.ENDURANCE.addLevel(player.getUniqueID(), 5, "something1", false, true);
+                giveStoneSword.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveStoneSword);
+                giveShield.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveShield);
+                ClassesSavedData.get(player.server).setPlayerClass(player, "WARRIOR");
+                classXpBooster.put(COMBAT, 10.0);
+                Config.setPlayerXpBoost(player, "classes.warrior", classXpBooster);
             }
+            else {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
+
+            }
+            player.closeScreen();
         }
     }
 
     public static void setClassA(Map<String, Object> dependencies1) {
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
             ItemStack giveBow = new ItemStack(Items.BOW, (int) (1));
             ItemStack giveArrows = new ItemStack(Items.ARROW, (int) (1));
-            if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer) == "NO_CLASS") {
-                if (entity instanceof PlayerEntity) {
-                    serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.YELLOW + "Archer"), false);
-                    Skill.ARCHERY.addLevel(serverPlayer.getUniqueID(), 10, "something", false, true);
-                    Skill.AGILITY.addLevel(serverPlayer.getUniqueID(), 5, "something1", false, true);
-                    giveBow.setCount((int) 1);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveBow);
-                    giveArrows.setCount((int) 16);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveArrows);
-                    ClassesSavedData.get(serverPlayer.server).setPlayerClass(serverPlayer, "ARCHER");
-                    classXpBooster.put(ARCHERY, 10.0);
-                    Config.setPlayerXpBoost(serverPlayer, "classes.archer", classXpBooster);
-                    serverPlayer.closeScreen();
-                }
-            } else {
-                serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
-                serverPlayer.closeScreen();
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS")) {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.YELLOW + "Archer"), false);
+                Skill.ARCHERY.addLevel(player.getUniqueID(), 10, "something", false, true);
+                Skill.AGILITY.addLevel(player.getUniqueID(), 5, "something1", false, true);
+                giveBow.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveBow);
+                giveArrows.setCount((int) 16);
+                ItemHandlerHelper.giveItemToPlayer((player), giveArrows);
+                ClassesSavedData.get(player.server).setPlayerClass(player, "ARCHER");
+                classXpBooster.put(ARCHERY, 10.0);
+                Config.setPlayerXpBoost(player, "classes.archer", classXpBooster);
             }
+            else {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
+            }
+            player.closeScreen();
         }
     }
     public static void setClassF(Map<String, Object> dependencies1) {
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
             ItemStack givePotatoes = new ItemStack(POTATO, (int) (1));
             ItemStack giveHoe = new ItemStack(STONE_HOE, (int) (1));
-            if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer) == "NO_CLASS") {
-                if (entity instanceof PlayerEntity) {
-                    serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.GREEN + "Farmer"), false);
-                    Skill.FARMING.addLevel(serverPlayer.getUniqueID(), 10, "something", false, true);
-                    Skill.COOKING.addLevel(serverPlayer.getUniqueID(), 5, "something1", false, true);
-                    giveHoe.setCount((int) 1);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveHoe);
-                    givePotatoes.setCount((int) 12);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), givePotatoes);
-                    ClassesSavedData.get(serverPlayer.server).setPlayerClass(serverPlayer, "FARMER");
-                    classXpBooster.put(FARMING, 10.0);
-                    Config.setPlayerXpBoost(serverPlayer, "classes.farmer", classXpBooster);
-                    serverPlayer.closeScreen();
-                }
-            } else {
-                serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
-                serverPlayer.closeScreen();
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS")) {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.GREEN + "Farmer"), false);
+                Skill.FARMING.addLevel(player.getUniqueID(), 10, "something", false, true);
+                Skill.COOKING.addLevel(player.getUniqueID(), 5, "something1", false, true);
+                giveHoe.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveHoe);
+                givePotatoes.setCount((int) 12);
+                ItemHandlerHelper.giveItemToPlayer((player), givePotatoes);
+                ClassesSavedData.get(player.server).setPlayerClass(player, "FARMER");
+                classXpBooster.put(FARMING, 10.0);
+                Config.setPlayerXpBoost(player, "classes.farmer", classXpBooster);
             }
+            else {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
+            }
+            player.closeScreen();
         }
     }
     public static void setClassB(Map<String, Object> dependencies1) {
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
             ItemStack giveIronIngots = new ItemStack(IRON_INGOT, (int) (1));
             ItemStack giveAnvil = new ItemStack(ANVIL, (int) (1));
-            if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer) == "NO_CLASS") {
-                if (entity instanceof PlayerEntity) {
-                    serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.WHITE + "Blacksmith"), false);
-                    Skill.SMITHING.addLevel(serverPlayer.getUniqueID(), 10, "something", false, true);
-                    Skill.CRAFTING.addLevel(serverPlayer.getUniqueID(), 10, "something1", false, true);
-                    giveAnvil.setCount((int) 1);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveAnvil);
-                    giveIronIngots.setCount((int) 12);
-                    ItemHandlerHelper.giveItemToPlayer((serverPlayer), giveIronIngots);
-                    ClassesSavedData.get(serverPlayer.server).setPlayerClass(serverPlayer, "BLACKSMITH");
-                    classXpBooster.put(SMITHING, 10.0);
-                    Config.setPlayerXpBoost(serverPlayer, "classes.smithing", classXpBooster);
-                    serverPlayer.closeScreen();
-                }
-            } else {
-                serverPlayer.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
-                serverPlayer.closeScreen();
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS")) {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.GRAY + "You selected class: " + TextFormatting.WHITE + "Blacksmith"), false);
+                Skill.SMITHING.addLevel(player.getUniqueID(), 10, "something", false, true);
+                Skill.CRAFTING.addLevel(player.getUniqueID(), 10, "something1", false, true);
+                giveAnvil.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveAnvil);
+                giveIronIngots.setCount((int) 12);
+                ItemHandlerHelper.giveItemToPlayer((player), giveIronIngots);
+                ClassesSavedData.get(player.server).setPlayerClass(player, "BLACKSMITH");
+                classXpBooster.put(SMITHING, 10.0);
+                Config.setPlayerXpBoost(player, "classes.smithing", classXpBooster);
             }
+            else {
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + "You have already selected a class."), false);
+            }
+            player.closeScreen();
         }
     }
 }

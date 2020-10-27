@@ -2,17 +2,15 @@ package com.qsided.classesmod.classes;
 
 
 import com.qsided.classesmod.ClassesMod;
-import harmonised.pmmo.skills.Skill;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldSavedData;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import static net.minecraft.world.World.OVERWORLD;
 
 public class ClassesSavedData extends WorldSavedData {
     private static String NAME = ClassesMod.MOD_ID;
@@ -35,16 +33,14 @@ public class ClassesSavedData extends WorldSavedData {
 
     @Override
     public CompoundNBT write(CompoundNBT outData) {
-        
-            for (Map.Entry<UUID, String> entry : classesMap.entrySet()) {
-                outData.putString(entry.getKey().toString(), entry.getValue());
-            }
-
+        for (Map.Entry<UUID, String> entry : classesMap.entrySet()) {
+            outData.putString(entry.getKey().toString(), entry.getValue());
+        }
         return outData;
     }
 
     public static ClassesSavedData get(MinecraftServer server) {
-        return server.getWorld(OVERWORLD).getSavedData().getOrCreate(ClassesSavedData::new, NAME);
+        return server.getWorld(World.OVERWORLD).getSavedData().getOrCreate(ClassesSavedData::new, NAME);
     }
 
     public String getPlayerClass(ServerPlayerEntity player) {

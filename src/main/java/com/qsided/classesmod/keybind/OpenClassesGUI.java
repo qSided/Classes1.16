@@ -2,6 +2,7 @@ package com.qsided.classesmod.keybind;
 
 import com.qsided.classesmod.ClassesMod;
 import com.qsided.classesmod.gui.OpenGUI;
+import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.client.Minecraft;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@Mod.EventBusSubscriber(modid = ClassesMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ClassesMod.GuiElement.Tag
 class OpenClasses extends ClassesMod.GuiElement {
     @OnlyIn(Dist.CLIENT)
@@ -35,7 +37,7 @@ class OpenClasses extends ClassesMod.GuiElement {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void initElements() {
-        keys = new KeyBinding("Classes Menu", GLFW.GLFW_KEY_RIGHT_ALT, "key.categories.misc");
+        keys = new KeyBinding("key.classes", GLFW.GLFW_KEY_RIGHT_ALT, "category.classes");
         ClientRegistry.registerKeyBinding(keys);
         MinecraftForge.EVENT_BUS.register(this);
     }

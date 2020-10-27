@@ -10,7 +10,7 @@ issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/classes-pmmo/issue
 
 modId="classes" #mandatory
 
-version="1.16.3-1.2.0" #mandatory
+version="1.16.3-1.2.2" #mandatory
 
 displayName="Classes" #mandatory
 

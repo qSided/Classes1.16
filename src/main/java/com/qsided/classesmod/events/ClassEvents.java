@@ -11,13 +11,19 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.Hand;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class ClassEvents extends ClassesMod.GuiElement {
     public ClassEvents(ClassesMod instance) {
         super(instance, 2);
     }
+
+    static Map<UUID, Float> cSpeed1 = new HashMap<>();
+    static Map<UUID, Float> cSpeed2 = new HashMap<>();
 
     @SubscribeEvent
     public static void playerTickEvent(TickEvent.PlayerTickEvent event) {
@@ -43,18 +49,25 @@ public class ClassEvents extends ClassesMod.GuiElement {
             }
         }
     }
-    @SubscribeEvent
-    public static void playJoinedWorldEvent(PlayerEvent.PlayerLoggedInEvent event) {
-        ServerPlayerEntity serverPlayer = (ServerPlayerEntity) event.getPlayer();
-        if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("WARRIOR")) {
-            Float speed = serverPlayer.abilities.getWalkSpeed();
-            serverPlayer.abilities.setWalkSpeed((float) (speed - 0.04));
-            ClassesMod.LOGGER.info("Successfully set Warrior " + serverPlayer.getDisplayName() + "'s speed to " + "[" + speed + "]");
-        }
-        else if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("ARCHER")) {
-            Float speed = serverPlayer.abilities.getWalkSpeed();
-            serverPlayer.abilities.setWalkSpeed((float) (speed + 0.04));
-            ClassesMod.LOGGER.info("Successfully set Archer " + serverPlayer.getDisplayName() + "'s speed to " + "[" + speed + "]");
-        }
-    }
+
+    //@SubscribeEvent
+    //public static void playJoinedWorldEvent(PlayerEvent.PlayerLoggedInEvent event) {
+    //    ServerPlayerEntity serverPlayer = (ServerPlayerEntity) event.getPlayer();
+    //    cSpeed1.put(serverPlayer.getUniqueID(), serverPlayer.abilities.getWalkSpeed());
+    //    if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("WARRIOR")) {
+    //        Float speed = serverPlayer.abilities.getWalkSpeed();
+    //        serverPlayer.abilities.setWalkSpeed((float) (speed - 0.04));
+    //        Float newSpeed = serverPlayer.abilities.getWalkSpeed();
+    //       cSpeed2.put(serverPlayer.getUniqueID(), newSpeed);
+    //        if (cSpeed1.get() < newSpeed) {
+    //            serverPlayer.abilities.setWalkSpeed((float) (newSpeed + 0.04));
+    //        }
+    //        ClassesMod.LOGGER.info("Successfully set Warrior " + serverPlayer.getDisplayName() + "'s speed to " + "[" + speed + "]");
+    //    }
+    //    else if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("ARCHER")) {
+    //        Float speed = serverPlayer.abilities.getWalkSpeed();
+    //        serverPlayer.abilities.setWalkSpeed((float) (speed + 0.04));
+    //        ClassesMod.LOGGER.info("Successfully set Archer " + serverPlayer.getDisplayName() + "'s speed to " + "[" + speed + "]");
+    //    }
+    //}
 }
