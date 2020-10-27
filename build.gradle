@@ -100,8 +100,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.16.3-34.1.25'
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    compileOnly fg.deobf("curse.maven:project-mmo:3092453")
-    runtimeOnly fg.deobf("curse.maven:project-mmo:3092453")
+    compileOnly fg.deobf("curse.maven:project-mmo:3093793")
+    runtimeOnly fg.deobf("curse.maven:project-mmo:3093793")
 }
 jar {
     manifest {

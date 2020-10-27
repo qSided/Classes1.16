@@ -149,27 +149,47 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
         @Override
         protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY) {
             this.font.drawString(matrixStack, "Please select a class. You cannot change classes later.", 41, 16, -6684775);
+            //Lumberjack
+            this.font.drawString(matrixStack, "+5 Crafting", 47, 54, -26368);
             this.font.drawString(matrixStack, "+10 Woodcutting", 37, 64, -26368);
             this.font.drawString(matrixStack, "+1 Stone Axe", 44, 74, -26368);
-            this.font.drawString(matrixStack, "+10 Mining", 159, 63, -10027009);
-            this.font.drawString(matrixStack, "+1 Stone Pickaxe", 144, 72, -10027009);
-            this.font.drawString(matrixStack, "+10 Combat", 267, 54, -52429);
-            this.font.drawString(matrixStack, "+1 Stone Sword", 257, 74, -52429);
-            this.font.drawString(matrixStack, "+10 Archery", 41, 134, -205);
-            this.font.drawString(matrixStack, "+5 Agility", 49, 124, -205);
-            this.font.drawString(matrixStack, "+1 Bow", 56, 144, -205);
-            this.font.drawString(matrixStack, "+16 Arrows", 45, 154, -205);
-            this.font.drawString(matrixStack, "+5 Crafting", 47, 54, -26368);
-            this.font.drawString(matrixStack, "+16 Torches", 152, 82, -10027009);
-            this.font.drawString(matrixStack, "+5 Endurance", 262, 64, -52429);
+            this.font.drawString(matrixStack, "+12 Oak Logs", 43, 84, -26368);
+            this.font.drawString(matrixStack, "+10% Woodcutting", 33, 94, -26368);
+
+            //Warrior
+            this.font.drawString(matrixStack, "+10 Combat", 265, 54, -52429);
+            this.font.drawString(matrixStack, "+5 Endurance", 258, 64, -52429);
+            this.font.drawString(matrixStack, "+1 Stone Sword", 254, 74, -52429);
+            this.font.drawString(matrixStack, "+1 Shield", 269, 84, -52429);
+            this.font.drawString(matrixStack, "+10% Combat", 262, 94, -52429);
+
+            //Archer
+            this.font.drawString(matrixStack, "+5 Agility", 49, 134, -205);
+            this.font.drawString(matrixStack, "+10 Archery", 41, 144, -205);
+            this.font.drawString(matrixStack, "+1 Bow", 56, 154, -205);
+            this.font.drawString(matrixStack, "+16 Arrows", 45, 164, -205);
+            this.font.drawString(matrixStack, "+10% Archery", 38, 174, -205);
+
+            //Miner
             this.font.drawString(matrixStack, "+5 Excavation", 149, 54, -10027009);
-            this.font.drawString(matrixStack, "+5 Cooking", 157, 124, -16715008);
-            this.font.drawString(matrixStack, "+10 Farming", 154, 134, -16715008);
-            this.font.drawString(matrixStack, "+1 Stone Hoe", 152, 144, -16715008);
-            this.font.drawString(matrixStack, "+12 Potatoes", 152, 154, -16715008);
-            this.font.drawString(matrixStack, "+5 Crafting", 262, 124, -1);
-            this.font.drawString(matrixStack, "+10 Smithing", 259, 134, -1);
-            this.font.drawString(matrixStack, "+12 Iron Ingots", 252, 144, -1);
+            this.font.drawString(matrixStack, "+10 Mining", 159, 64, -10027009);
+            this.font.drawString(matrixStack, "+1 Stone Pickaxe", 144, 74, -10027009);
+            this.font.drawString(matrixStack, "+16 Torches", 154, 84, -10027009);
+            this.font.drawString(matrixStack, "+10% Mining", 158, 94, -10027009);
+
+            //Farmer
+            this.font.drawString(matrixStack, "+5 Cooking", 157, 134, -16715008);
+            this.font.drawString(matrixStack, "+10 Farming", 154, 144, -16715008);
+            this.font.drawString(matrixStack, "+1 Stone Hoe", 152, 154, -16715008);
+            this.font.drawString(matrixStack, "+12 Potatoes", 152, 164, -16715008);
+            this.font.drawString(matrixStack, "+10% Farming", 152, 174, -16715008);
+
+            //Blacksmith
+            this.font.drawString(matrixStack, "+10 Crafting", 259, 134, -1);
+            this.font.drawString(matrixStack, "+10 Smithing", 260, 144, -1);
+            this.font.drawString(matrixStack, "+1 Anvil", 270, 154, -1);
+            this.font.drawString(matrixStack, "+12 Iron Ingots", 252, 164, -1);
+            this.font.drawString(matrixStack, "+10% Smithing", 258, 174, -1);
         }
 
         //@Override
@@ -194,15 +214,15 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(2, x, y, z));
                 handleButtonAction(entity, 2, x, y, z);
             }));
-            this.addButton(new Button(this.guiLeft + 24, this.guiTop + 102, 100, 20, new StringTextComponent("  Archer  "), e -> {
+            this.addButton(new Button(this.guiLeft + 24, this.guiTop + 112, 100, 20, new StringTextComponent("  Archer  "), e -> {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(3, x, y, z));
                 handleButtonAction(entity, 3, x, y, z);
             }));
-            this.addButton(new Button(this.guiLeft + 132, this.guiTop + 102, 100, 20, new StringTextComponent("  Farmer  "), e -> {
+            this.addButton(new Button(this.guiLeft + 132, this.guiTop + 112, 100, 20, new StringTextComponent("  Farmer  "), e -> {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(4, x, y, z));
                 handleButtonAction(entity, 4, x, y, z);
             }));
-            this.addButton(new Button(this.guiLeft + 239, this.guiTop + 102, 100, 20, new StringTextComponent("Blacksmith"), e -> {
+            this.addButton(new Button(this.guiLeft + 239, this.guiTop + 112, 100, 20, new StringTextComponent("Blacksmith"), e -> {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(5, x, y, z));
                 handleButtonAction(entity, 5, x, y, z);
             }));

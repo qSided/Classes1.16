@@ -53,7 +53,6 @@ public class ClassEvents extends ClassesMod.GuiElement {
         }
         else if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("ARCHER")) {
             Float speed = serverPlayer.abilities.getWalkSpeed();
-            Float strength = serverPlayer.abilities.getWalkSpeed();
             serverPlayer.abilities.setWalkSpeed((float) (speed + 0.04));
             ClassesMod.LOGGER.info("Successfully set Archer " + serverPlayer.getDisplayName() + "'s speed to " + "[" + speed + "]");
         }

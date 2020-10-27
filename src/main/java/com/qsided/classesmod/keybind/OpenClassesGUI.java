@@ -35,7 +35,7 @@ class OpenClasses extends ClassesMod.GuiElement {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void initElements() {
-        keys = new KeyBinding("key.classes.class_selector", GLFW.GLFW_KEY_RIGHT_ALT, "key.categories.misc");
+        keys = new KeyBinding("Classes Menu", GLFW.GLFW_KEY_RIGHT_ALT, "key.categories.misc");
         ClientRegistry.registerKeyBinding(keys);
         MinecraftForge.EVENT_BUS.register(this);
     }

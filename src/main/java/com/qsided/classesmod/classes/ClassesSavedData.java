@@ -2,15 +2,14 @@ package com.qsided.classesmod.classes;
 
 
 import com.qsided.classesmod.ClassesMod;
+import harmonised.pmmo.skills.Skill;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldSavedData;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 import static net.minecraft.world.World.OVERWORLD;
