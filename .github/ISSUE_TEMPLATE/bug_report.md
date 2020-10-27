@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help improve Classes
 title: ''
-labels: bug, documentation, duplicate, enhancement, invalid, question, wontfix, wontadd
+labels: bug
 assignees: qSided
 
 ---

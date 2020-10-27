@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an improvement or feature for Classes
 title: ''
-labels: bug, documentation, duplicate, enhancement, invalid, question, wontfix, wontadd
+labels: enhancement
 assignees: qSided
 
 ---
