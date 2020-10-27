@@ -10,7 +10,7 @@ issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/classes-pmmo/issue
 
 modId="classes" #mandatory
 
-version="1.16.3-1.1.1" #mandatory
+version="1.16.3-1.2.0" #mandatory
 
 displayName="Classes" #mandatory
 
@@ -25,7 +25,7 @@ credits="Thanks to Daddy_P1G and deezer911 for the idea! Thanks to Dawnless for 
 authors="qSided" #optional
 
 description='''
-A simple classes mod by qSided for Project MMO by Harmonised.
+A simple classes mod by qSided, for Project MMO by Harmonised.
 '''
 
 [[dependencies.examplemod]] #optional
