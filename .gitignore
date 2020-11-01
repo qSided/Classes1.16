@@ -5,7 +5,6 @@ bin
 .metadata
 .classpath
 .project
-*.github
 
 # idea
 out
@@ -22,7 +21,8 @@ gradle
 # other
 eclipse
 run
-.gradle
+.github
+gradle
 
 # Files from Forge MDK
 forge*changelog.txt
