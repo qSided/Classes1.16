@@ -21,8 +21,7 @@ gradle
 # other
 eclipse
 run
-.github
-gradle
+.yml
 
 # Files from Forge MDK
 forge*changelog.txt
