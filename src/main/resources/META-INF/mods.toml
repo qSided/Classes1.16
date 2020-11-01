@@ -2,25 +2,25 @@ modLoader="javafml" #mandatory
 
 loaderVersion="[34,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 
-license="All rights reserved"
+license="GPL v2"
 
-issueTrackerURL="https://www.curseforge.com/minecraft/mc-mods/classes-pmmo/issues" #optional
+issueTrackerURL="https://github.com/qSided/Classes1.16/issues" #optional
 
 [[mods]] #mandatory
 
 modId="classes" #mandatory
 
-version="1.16.3-1.2.2" #mandatory
+version="1.16.3-1.3.0" #mandatory
 
 displayName="Classes" #mandatory
 
 updateJSONURL="http://myurl.me/" #optional
 
-displayURL="https://www.curseforge.com/minecraft/mc-mods/classes-pmmo" #optional
+displayURL="https://www.curseforge.com/minecraft/mc-mods/classes" #optional
 
 logoFile="example.png" #optional
 
-credits="Thanks to Daddy_P1G and deezer911 for the idea! Thanks to Dawnless for extra ideas!" #optional
+credits="Thanks to Daddy_P1G and deezer911 for the idea! Thanks to Dawnless for extra ideas! Thanks to Harmonised for making PMMO and for helping me throughout development of Classes." #optional
 
 authors="qSided" #optional
 
@@ -42,6 +42,12 @@ side="BOTH"
 # Here's another dependency
 [[dependencies.examplemod]]
 modId="minecraft"
+mandatory=true
+versionRange="[1.16.3]"
+ordering="NONE"
+side="BOTH"
+[[dependencies.pmmo]]
+modId="pmmo"
 mandatory=true
 versionRange="[1.16.3]"
 ordering="NONE"

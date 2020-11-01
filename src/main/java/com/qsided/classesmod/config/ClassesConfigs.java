@@ -12,17 +12,24 @@ public class ClassesConfigs {
 
     public static class Common
     {
-        //public final ForgeConfigSpec.ValueSpec lumberjackTool;
+        public final ForgeConfigSpec.BooleanValue openOnFirstJoin;
+        public final ForgeConfigSpec.BooleanValue doDailyRewards;
 
         public Common(ForgeConfigSpec.Builder builder) {
             builder.comment("Classes Configurations")
                     .push("classes");
 
-            //lumberjackTool = builder
-            //        .comment("What color should the last stand activation message be?")
-            //        .translation("laststand.configgui.textColor")
-            //        .worldRestart()
-            //        .defineEnum("textColor", BLUE, BLACK);
+            openOnFirstJoin = builder
+                    .comment("Should the gui open on the players first join?")
+                    .translation("classes.config.openOnFirstJoin")
+                    .worldRestart()
+                    .define("openOnFirstJoin", false);
+
+            doDailyRewards = builder
+                    .comment("Should players receive daily rewards?")
+                    .translation("classes.config.doDailyRewards")
+                    .worldRestart()
+                    .define("doDailyRewards", true);
 
             builder.pop();
         }

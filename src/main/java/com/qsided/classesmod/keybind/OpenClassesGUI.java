@@ -27,7 +27,7 @@ import java.util.function.Supplier;
 @ClassesMod.GuiElement.Tag
 class OpenClasses extends ClassesMod.GuiElement {
     @OnlyIn(Dist.CLIENT)
-    private KeyBinding keys;
+    public KeyBinding keys;
     public OpenClasses(ClassesMod instance) {
         super(instance, 5);
         guiElements.addNetworkMessage(KeyBindingPressedMessage.class, KeyBindingPressedMessage::buffer, KeyBindingPressedMessage::new,

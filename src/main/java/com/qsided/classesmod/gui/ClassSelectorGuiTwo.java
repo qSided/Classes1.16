@@ -1,12 +1,10 @@
 package com.qsided.classesmod.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.qsided.classesmod.classes.ClassesSavedData;
-import net.minecraft.entity.player.ServerPlayerEntity;
+import com.qsided.classesmod.classes.ClassSelectedTwo;
 import net.minecraft.util.text.StringTextComponent;
 
 import com.qsided.classesmod.ClassesMod;
-import com.qsided.classesmod.classes.ClassSelected;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -38,10 +36,10 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 @ClassesMod.GuiElement.Tag
-public class ClassSelectorGui extends ClassesMod.GuiElement {
+public class ClassSelectorGuiTwo extends ClassesMod.GuiElement {
     public static HashMap guistate = new HashMap();
     private static ContainerType<GuiContainerMod> containerType = null;
-    public ClassSelectorGui(ClassesMod instance) {
+    public ClassSelectorGuiTwo(ClassesMod instance) {
         super(instance, 1);
         guiElements.addNetworkMessage(ButtonPressedMessage.class, ButtonPressedMessage::buffer, ButtonPressedMessage::new,
                 ButtonPressedMessage::handler);
@@ -58,7 +56,7 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
 
     @SubscribeEvent
     public void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {
-        event.getRegistry().register(containerType.setRegistryName("class_selector"));
+        event.getRegistry().register(containerType.setRegistryName("class_selector_pg2"));
     }
     public static class GuiContainerModFactory implements IContainerFactory {
         public GuiContainerMod create(int id, PlayerInventory inv, PacketBuffer extraData) {
@@ -149,46 +147,45 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
 
         @Override
         protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY) {
-            ServerPlayerEntity player = (ServerPlayerEntity) entity;
 
             this.font.drawString(matrixStack, "Please select a class. You cannot change classes later.", 41, 16, -6684775);
 
-            //Fighter
-            this.font.drawString(matrixStack, "+1 Wooden Sword", 47, 54, -26368);
-            this.font.drawString(matrixStack, "+1 Bow", 37, 64, -26368);
-            this.font.drawString(matrixStack, "+16 Arrows", 44, 74, -26368);
-            this.font.drawString(matrixStack, "+5% Combat", 43, 84, -26368);
-            this.font.drawString(matrixStack, "+5% Endurance", 33, 94, -26368);
+            //Peasant
+            this.font.drawString(matrixStack, "+5 Agility", 47, 54, -26368);
+            this.font.drawString(matrixStack, "+5 Cooking", 37, 64, -26368);
+            this.font.drawString(matrixStack, "+1 Tunic", 44, 74, -26368);
+            this.font.drawString(matrixStack, "+8 Bread", 43, 84, -26368);
+            this.font.drawString(matrixStack, "+2.5% Everything", 33, 94, -26368);
 
-            //Survivor
+            //Mage
             this.font.drawString(matrixStack, "+10 Combat", 265, 54, -52429);
             this.font.drawString(matrixStack, "+5 Endurance", 258, 64, -52429);
             this.font.drawString(matrixStack, "+1 Stone Sword", 254, 74, -52429);
             this.font.drawString(matrixStack, "+1 Shield", 269, 84, -52429);
             this.font.drawString(matrixStack, "+10% Combat", 262, 94, -52429);
 
-            //Gatherer
+            //Fisherman
             this.font.drawString(matrixStack, "+5 Agility", 49, 134, -205);
             this.font.drawString(matrixStack, "+10 Archery", 41, 144, -205);
             this.font.drawString(matrixStack, "+1 Bow", 56, 154, -205);
             this.font.drawString(matrixStack, "+16 Arrows", 45, 164, -205);
             this.font.drawString(matrixStack, "+10% Archery", 38, 174, -205);
 
-            //Worker
+            //Craftsman
             this.font.drawString(matrixStack, "+5 Excavation", 149, 54, -10027009);
             this.font.drawString(matrixStack, "+10 Mining", 159, 64, -10027009);
             this.font.drawString(matrixStack, "+1 Stone Pickaxe", 144, 74, -10027009);
             this.font.drawString(matrixStack, "+16 Torches", 154, 84, -10027009);
             this.font.drawString(matrixStack, "+10% Mining", 158, 94, -10027009);
 
-            //Explorer
+            //Collector
             this.font.drawString(matrixStack, "+5 Cooking", 157, 134, -16715008);
             this.font.drawString(matrixStack, "+10 Farming", 154, 144, -16715008);
             this.font.drawString(matrixStack, "+1 Stone Hoe", 152, 154, -16715008);
             this.font.drawString(matrixStack, "+12 Potatoes", 152, 164, -16715008);
             this.font.drawString(matrixStack, "+10% Farming", 152, 174, -16715008);
 
-            //Magician
+            //Explorer
             this.font.drawString(matrixStack, "+10 Crafting", 259, 134, -1);
             this.font.drawString(matrixStack, "+10 Smithing", 260, 144, -1);
             this.font.drawString(matrixStack, "+1 Anvil", 270, 154, -1);
@@ -206,34 +203,34 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
         public void init(Minecraft minecraft, int width, int height) {
             super.init(minecraft, width, height);
             minecraft.keyboardListener.enableRepeatEvents(true);
-            this.addButton(new Button(this.guiLeft + 24, this.guiTop + 32, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Fighter"), e -> {
+            this.addButton(new Button(this.guiLeft + 24, this.guiTop + 32, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Peasant"), e -> {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(0, x, y, z));
                 handleButtonAction(entity, 0, x, y, z);
             }));
-            this.addButton(new Button(this.guiLeft + 132, this.guiTop + 32, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Survivalist"), e -> {
+            this.addButton(new Button(this.guiLeft + 132, this.guiTop + 32, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Mage"), e -> {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(1, x, y, z));
                 handleButtonAction(entity, 1, x, y, z);
             }));
-            this.addButton(new Button(this.guiLeft + 239, this.guiTop + 32, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Worker"), e -> {
+            this.addButton(new Button(this.guiLeft + 239, this.guiTop + 32, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Fisherman"), e -> {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(2, x, y, z));
                 handleButtonAction(entity, 2, x, y, z);
             }));
-            this.addButton(new Button(this.guiLeft + 24, this.guiTop + 112, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Artisan"), e -> {
+            this.addButton(new Button(this.guiLeft + 24, this.guiTop + 112, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Craftsman"), e -> {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(3, x, y, z));
                 handleButtonAction(entity, 3, x, y, z);
             }));
-            this.addButton(new Button(this.guiLeft + 132, this.guiTop + 112, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Explorer"), e -> {
+            this.addButton(new Button(this.guiLeft + 132, this.guiTop + 112, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Collector"), e -> {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(4, x, y, z));
                 handleButtonAction(entity, 4, x, y, z);
             }));
-            this.addButton(new Button(this.guiLeft + 239, this.guiTop + 112, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Magician"), e -> {
+            this.addButton(new Button(this.guiLeft + 239, this.guiTop + 112, 100, 20, new StringTextComponent(TextFormatting.BOLD + "Explorer"),e -> {
                 ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(5, x, y, z));
                 handleButtonAction(entity, 5, x, y, z);
             }));
-            //this.addButton(new Button(this.guiLeft + 400, this.guiTop + 112, 20, 20, new StringTextComponent(">"), e -> {
-            //    ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(6, x, y, z));
-            //    handleButtonAction(entity, 5, x, y, z);
-            //}));
+            this.addButton(new Button(this.guiLeft - 56, this.guiTop + 112, 20, 20, new StringTextComponent("<"), e -> {
+                ClassesMod.PACKET_HANDLER.sendToServer(new ButtonPressedMessage(6, x, y, z));
+                handleButtonAction(entity, 5, x, y, z);
+            }));
         }
     }
 
@@ -320,66 +317,66 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
     }
     private static void handleButtonAction(PlayerEntity entity, int buttonID, int x, int y, int z) {
         World world = entity.world;
-        // security measure to prevent arbitrary chunk generation
         if (!world.isBlockLoaded(new BlockPos(x, y, z)))
             return;
         if (buttonID == 0) {
             {
                 Map<String, Object> dependencies1 = new HashMap<>();
                 dependencies1.put("entity", entity);
-                ClassSelected.setClassFighter(dependencies1);
+                ClassSelectedTwo.setClassP(dependencies1);
             }
         }
         if (buttonID == 1) {
             {
                 Map<String, Object> dependencies1 = new HashMap<>();
                 dependencies1.put("entity", entity);
-                ClassSelected.setClassSurvivor(dependencies1);
+                ClassSelectedTwo.setClassM(dependencies1);
             }
         }
         if (buttonID == 2) {
             {
                 Map<String, Object> dependencies1 = new HashMap<>();
                 dependencies1.put("entity", entity);
-                ClassSelected.setClassGatherer(dependencies1);
+                ClassSelectedTwo.setClassFi(dependencies1);
             }
         }
         if (buttonID == 3) {
             {
                 Map<String, Object> dependencies1 = new HashMap<>();
                 dependencies1.put("entity", entity);
-                ClassSelected.setClassWorker(dependencies1);
+                ClassSelectedTwo.setClassC(dependencies1);
             }
         }
         if (buttonID == 4) {
             {
                 Map<String, Object> dependencies1 = new HashMap<>();
                 dependencies1.put("entity", entity);
-                ClassSelected.setClassExplorer(dependencies1);
+                ClassSelectedTwo.setClassCo(dependencies1);
             }
         }
         if (buttonID == 5) {
             {
                 Map<String, Object> dependencies1 = new HashMap<>();
                 dependencies1.put("entity", entity);
-                ClassSelected.setClassMagician(dependencies1);
+                ClassSelectedTwo.setClassE(dependencies1);
             }
         }
-        //if (buttonID == 6) {
-        //    {
-        //        Map<String, Object> dependencies = new HashMap<>();
-        //        dependencies.put("entity", entity);
-        //        dependencies.put("x", x);
-        //        dependencies.put("y", y);
-        //        dependencies.put("z", z);
-        //        dependencies.put("world", world);
-        //        OpenGUI.openGui2(dependencies);
-        //    }
-        //}
+        if (buttonID == 6) {
+            {
+                Map<String, Object> dependencies = new HashMap<>();
+                dependencies.put("entity", entity);
+                dependencies.put("x", x);
+                dependencies.put("y", y);
+                dependencies.put("z", z);
+                dependencies.put("world", world);
+                OpenGUI.openGui(dependencies);
+            }
+        }
     }
 
     private static void handleSlotAction(PlayerEntity entity, int slotID, int changeType, int meta, int x, int y, int z) {
         World world = entity.world;
+        // security measure to prevent arbitrary chunk generation
         if (!world.isBlockLoaded(new BlockPos(x, y, z)))
             return;
     }
