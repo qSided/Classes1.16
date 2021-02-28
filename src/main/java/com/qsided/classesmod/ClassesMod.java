@@ -1,6 +1,9 @@
 package com.qsided.classesmod;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.qsided.classesmod.config.ClassesConfigs;
+import com.qsided.classesmod.config.NewClass;
 import com.qsided.classesmod.events.ClassEvents;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
@@ -16,6 +19,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -23,18 +27,21 @@ import net.minecraftforge.forgespi.language.ModFileScanData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.*;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.CodeSource;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 @Mod("classes")
 public class ClassesMod {
+
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation("classes", "main"),
             () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
@@ -69,7 +76,7 @@ public class ClassesMod {
         public void initElements() {
         }
 
-        public void init(FMLCommonSetupEvent event) {
+        public void init(FMLCommonSetupEvent event) throws IOException {
         }
 
         public void serverLoad(FMLServerStartingEvent event) {
@@ -88,6 +95,25 @@ public class ClassesMod {
 
     public ClassesMod() {
 
+        File file = FMLPaths.CONFIGDIR.get().resolve("classes.json").toFile();
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.setPrettyPrinting().create();
+
+        List<NewClass> classes = Arrays.asList(
+                new NewClass(1, "Soldier", 5.0),
+                new NewClass(1, "Freeman", 5.0));
+
+        try {
+
+            FileWriter writer = new FileWriter(file);
+            writer.write(String.valueOf(classes));
+            writer.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
 
@@ -98,6 +124,7 @@ public class ClassesMod {
 
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(ClassEvents.class);
+
 
         try {
             ModFileScanData modFileInfo = ModList.get().getModFileById("classes").getFile().getScanResult();

@@ -1,8 +1,10 @@
 package com.qsided.classesmod.keybind;
 
 import com.qsided.classesmod.ClassesMod;
+import com.qsided.classesmod.classes.ClassesSavedData;
 import com.qsided.classesmod.gui.OpenGUI;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.client.Minecraft;
@@ -23,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@Mod.EventBusSubscriber(modid = ClassesMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ClassesMod.GuiElement.Tag
 class OpenClasses extends ClassesMod.GuiElement {
     @OnlyIn(Dist.CLIENT)
@@ -93,8 +94,32 @@ class OpenClasses extends ClassesMod.GuiElement {
             dependencies.put("y", y);
             dependencies.put("z", z);
             dependencies.put("world", world);
-            OpenGUI.openGui(dependencies);
+            //---------------------------------------------------------------------------------------
+            Entity entity1 = (Entity) dependencies.get("entity");
+            //---------------------------------------------------------------------------------------
+            if (entity1 instanceof ServerPlayerEntity) {
+                ServerPlayerEntity player = (ServerPlayerEntity) entity1;
+                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS")) {
+                    OpenGUI.openGui(dependencies);
+                }// else {
+                 //   if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("FIGHTER")) {
+                 //       if (ClassesSavedData.get(player.server).getPlayerSubclass(player).equals("NO_SUBCLASS")) {
+                 //           OpenGUI.openGui2(dependencies);
+                 //       }
+                 //   }
+                 //   if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("FIGHTER")) {
+                 //       if (ClassesSavedData.get(player.server).getPlayerSubclass(player).equals("NO_SUBCLASS")) {
+                 //           OpenGUI.openGui2(dependencies);
+                 //       }
+                 //   }
+                 //   if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("FIGHTER")) {
+                 //       if (ClassesSavedData.get(player.server).getPlayerSubclass(player).equals("NO_SUBCLASS")) {
+                 //           OpenGUI.openGui2(dependencies);
+                 //       }
+                 //   }
+                }
+            }
         }
     }
-}
+
 

@@ -1,5 +1,5 @@
 {
-  "required": true,
+  "required": false,
   "package": "com.qsided.classesmod.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "classes.refmap.json",
@@ -8,7 +8,6 @@
   "server":[
   ],
   "client":[
-
   ],
   "injectors": {
     "defaultRequire": 1

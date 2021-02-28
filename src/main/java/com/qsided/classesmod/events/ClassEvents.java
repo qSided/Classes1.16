@@ -33,32 +33,30 @@ public class ClassEvents extends ClassesMod.GuiElement {
     public static void playerTickEvent(TickEvent.PlayerTickEvent event) {
         Entity entity = event.player;
         if (entity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
-            if (serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem && ClassesSavedData.get(serverPlayer.server)
-                    .getPlayerClass(serverPlayer).equals("LUMBERJACK")) {
-                serverPlayer.addPotionEffect(new EffectInstance(Effects.HASTE, 60, 0));
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
+            if (
+                    player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem ||
+                            player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof PickaxeItem &&
+                                    ClassesSavedData.get(player.server)
+                                            .getPlayerClass(player).equals("FREEMAN")) {
+                player.addPotionEffect(new EffectInstance(Effects.HASTE, 60, 0));
             }
         }
         if (entity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
-            if (serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof PickaxeItem && ClassesSavedData.get(serverPlayer.server)
-                    .getPlayerClass(serverPlayer).equals("MINER")) {
-                serverPlayer.addPotionEffect(new EffectInstance(Effects.HASTE, 60, 0));
-            }
-        }
-        if (entity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
-            if (ClassesSavedData.get(serverPlayer.server).getPlayerClass(serverPlayer).equals("WARRIOR")){
-                if (serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof SwordItem ||
-                        serverPlayer.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) {
-                    serverPlayer.addPotionEffect(new EffectInstance(Effects.STRENGTH, 60, 0));
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("SOLDIER")){
+                if (
+                        player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof SwordItem ||
+                        player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) {
+
+                    player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 60, 0));
                 }
             }
         }
         if (entity instanceof ServerPlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
             if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("MAGICIAN")) {
-                if (((EnchantmentHelper.getEnchantmentLevel(Enchantments.UNBREAKING, ((ServerPlayerEntity) entity).getHeldItemMainhand())) < 1)) {
+                if (((EnchantmentHelper.getEnchantmentLevel(Enchantments.UNBREAKING, ((ServerPlayerEntity) entity).getHeldItemMainhand())) <= 1)) {
                     if (player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof PickaxeItem
                             || player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem
                             || player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof SwordItem
@@ -78,16 +76,14 @@ public class ClassEvents extends ClassesMod.GuiElement {
         ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
         if (ClassesConfigs.COMMON.openOnFirstJoin.get()) {
             if (!ClassesSavedData.get(player.server).getPlayerJoined(player)) {
-                if (ClassesConfigs.COMMON.openOnFirstJoin.get()) {
-                    Map<String, Object> dependencies = new HashMap<>();
-                    dependencies.put("entity", player);
-                    dependencies.put("x", player.getPosX());
-                    dependencies.put("y", player.getPosY());
-                    dependencies.put("z", player.getPosZ());
-                    dependencies.put("world", player.getEntityWorld());
-                    OpenGUI.openGui(dependencies);
-                    ClassesSavedData.get(player.server).setPlayerJoined(player, true);
-                }
+                Map<String, Object> dependencies = new HashMap<>();
+                dependencies.put("entity", player);
+                dependencies.put("x", player.getPosX());
+                dependencies.put("y", player.getPosY());
+                dependencies.put("z", player.getPosZ());
+                dependencies.put("world", player.getEntityWorld());
+                OpenGUI.openGui(dependencies);
+                ClassesSavedData.get(player.server).setPlayerJoined(player, true);
             }
         }
 
@@ -134,6 +130,43 @@ public class ClassEvents extends ClassesMod.GuiElement {
                                     + TextFormatting.GREEN + "Survivor"), false);
         }
 
+        //Update legacy 2.0
+        if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("FIGHTER")) {
+            ClassesSavedData.get(player.server).setPlayerClass(player, "SOLDIER");
+            player.sendStatusMessage(new StringTextComponent
+                            (TextFormatting.GRAY + "You're class has been updated to: "
+                                    + TextFormatting.RED + "Soldier"),
+                    false);
+        }
+        if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("WORKER")) {
+            ClassesSavedData.get(player.server).setPlayerClass(player, "FREEMAN");
+            player.sendStatusMessage(new StringTextComponent
+                            (TextFormatting.GRAY + "You're class has been updated to: "
+                                    + TextFormatting.AQUA + "Freeman"),
+                    false);
+        }
+        if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("SURVIVOR")) {
+            ClassesSavedData.get(player.server).setPlayerClass(player, "SURVIVALIST");
+            player.sendStatusMessage(new StringTextComponent
+                            (TextFormatting.GRAY + "You're class has been updated to: "
+                                    + TextFormatting.GOLD + "Survivalist"),
+                    false);
+        }
+        if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("EXPLORER")) {
+            ClassesSavedData.get(player.server).setPlayerClass(player, "ADVENTURER");
+            player.sendStatusMessage(new StringTextComponent
+                            (TextFormatting.GRAY + "You're class has been updated to: "
+                                    + TextFormatting.GREEN + "Adventurer"),
+                    false);
+        }
+        if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("MAGICIAN")) {
+            ClassesSavedData.get(player.server).setPlayerClass(player, "MAGE");
+            player.sendStatusMessage(new StringTextComponent
+                            (TextFormatting.GRAY + "You're class has been updated to: "
+                                    + TextFormatting.BLUE + "Mage"),
+                    false);
+
+
 
         //Daily reward
         if (ClassesConfigs.COMMON.doDailyRewards.get()) {
@@ -141,30 +174,8 @@ public class ClassEvents extends ClassesMod.GuiElement {
             if (currentTime - ClassesSavedData.get(player.server).getPlayerClaimed(player) >= 720L) {
 
                 //Fighter
-                ItemStack giveOakLogs = new ItemStack(OAK_LOG, (int) (1));
-                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("FIGHTER")) {
-                    giveOakLogs.setCount((int) 12);
-                    ItemHandlerHelper.giveItemToPlayer((player), giveOakLogs);
-                    player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_GRAY +
-                            "You claimed your daily reward of " + TextFormatting.GOLD + "12 Oak Logs" + TextFormatting.DARK_GRAY +
-                            " by logging in today!"), false);
-                    ClassesSavedData.get(player.server).setPlayerClaimed(player, System.currentTimeMillis()/1000/60);
-                }
-
-                //Gatherer
-                ItemStack giveIronOre = new ItemStack(IRON_ORE, (int) (1));
-                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("GATHERER")) {
-                    giveIronOre.setCount((int) 12);
-                    ItemHandlerHelper.giveItemToPlayer((player), giveIronOre);
-                    player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_GRAY +
-                            "You claimed your daily reward of " + TextFormatting.BLUE + "12 Iron Ore" + TextFormatting.DARK_GRAY +
-                            " by logging in today!"), false);
-                    ClassesSavedData.get(player.server).setPlayerClaimed(player, System.currentTimeMillis()/1000/60);
-                }
-
-                //Worker
                 ItemStack giveGoldenApple = new ItemStack(GOLDEN_APPLE, (int) (1));
-                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("WORKER")) {
+                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("SOLDIER")) {
                     giveGoldenApple.setCount((int) 1);
                     ItemHandlerHelper.giveItemToPlayer((player), giveGoldenApple);
                     player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_GRAY +
@@ -173,24 +184,56 @@ public class ClassEvents extends ClassesMod.GuiElement {
                     ClassesSavedData.get(player.server).setPlayerClaimed(player, System.currentTimeMillis()/1000/60);
                 }
 
-                //Explorer
-                ItemStack giveArrows = new ItemStack(ARROW, (int) (1));
-                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("EXPLORER")) {
-                    giveArrows.setCount((int) 16);
-                    ItemHandlerHelper.giveItemToPlayer((player), giveArrows);
+                //Survivor
+                ItemStack giveHayBales = new ItemStack(IRON_ORE, (int) (1));
+                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("SURVIVALIST")) {
+                    giveHayBales.setCount((int) 6);
+                    ItemHandlerHelper.giveItemToPlayer((player), giveHayBales);
                     player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_GRAY +
-                            "You claimed your daily reward of " + TextFormatting.YELLOW + "16 Arrows" + TextFormatting.DARK_GRAY +
+                            "You claimed your daily reward of " + TextFormatting.GREEN + "6 Hay Bales" + TextFormatting.DARK_GRAY +
+                            " by logging in today!"), false);
+                    ClassesSavedData.get(player.server).setPlayerClaimed(player, System.currentTimeMillis()/1000/60);
+                }
+
+                //Artisan
+                ItemStack giveAnvil = new ItemStack(ANVIL, (int) (1));
+                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("ARTISAN")) {
+                    giveAnvil.setCount((int) 1);
+                    ItemHandlerHelper.giveItemToPlayer((player), giveAnvil);
+                    player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_GRAY +
+                            "You claimed your daily reward of " + TextFormatting.YELLOW + "1 Anvil" + TextFormatting.DARK_GRAY +
+                            " by logging in today!"), false);
+                    ClassesSavedData.get(player.server).setPlayerClaimed(player, System.currentTimeMillis()/1000/60);
+                }
+
+                //Worker
+                ItemStack giveIronOre = new ItemStack(IRON_ORE, (int) (1));
+                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("FREEMAN")) {
+                    giveIronOre.setCount((int) 12);
+                    ItemHandlerHelper.giveItemToPlayer((player), giveIronOre);
+                    player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_GRAY +
+                            "You claimed your daily reward of " + TextFormatting.GOLD + "12 Iron Ore" + TextFormatting.DARK_GRAY +
+                            " by logging in today!"), false);
+                    ClassesSavedData.get(player.server).setPlayerClaimed(player, System.currentTimeMillis()/1000/60);
+                }
+
+                //Explorer
+                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("ADVENTURER")) {
+                    giveHayBales.setCount((int) 16);
+                    ItemHandlerHelper.giveItemToPlayer((player), giveHayBales);
+                    player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_GRAY +
+                            "You claimed your daily reward of " + TextFormatting.AQUA + "1 Diamond" + TextFormatting.DARK_GRAY +
                             " by logging in today!"), false);
                     ClassesSavedData.get(player.server).setPlayerClaimed(player, System.currentTimeMillis()/1000/60);
                 }
 
                 //Magician
-                ItemStack giveBales = new ItemStack(HAY_BLOCK, (int) (1));
-                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("MAGICIAN")) {
-                    giveBales.setCount((int) 8);
-                    ItemHandlerHelper.giveItemToPlayer((player), giveBales);
+                ItemStack giveXpBottles = new ItemStack(EXPERIENCE_BOTTLE, (int) (1));
+                if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("MAGE")) {
+                    giveXpBottles.setCount((int) 8);
+                    ItemHandlerHelper.giveItemToPlayer((player), giveXpBottles);
                     player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_GRAY +
-                            "You claimed your daily reward of " + TextFormatting.YELLOW + "8 Hay Blocks" + TextFormatting.DARK_GRAY +
+                            "You claimed your daily reward of " + TextFormatting.DARK_BLUE + "8 Xp Bottles" + TextFormatting.DARK_GRAY +
                             " by logging in today!"), false);
                     ClassesSavedData.get(player.server).setPlayerClaimed(player, System.currentTimeMillis()/1000/60);
                 }
@@ -199,6 +242,7 @@ public class ClassEvents extends ClassesMod.GuiElement {
                 player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED +
                         "You have already claimed your daily login reward!"), false);
                 ClassesMod.LOGGER.info(System.currentTimeMillis());
+                }
             }
         }
     }

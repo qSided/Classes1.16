@@ -1,16 +1,22 @@
 package com.qsided.classesmod.classes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.qsided.classesmod.ClassesMod;
+import com.qsided.classesmod.config.NewClass;
 import harmonised.pmmo.config.Config;
-import harmonised.pmmo.skills.Skill;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.items.ItemHandlerHelper;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,296 +28,260 @@ public class ClassSelected extends ClassesMod.GuiElement {
         super(instance, 2);
     }
 
-    static Map<Skill, Double> classXpBooster = new HashMap<>();
-    static Map<Skill, Double> classXpBooster1 = new HashMap<>();
-    static Map<Skill, Double> classXpBooster2 = new HashMap<>();
-    static Map<Skill, Double> classXpBooster3 = new HashMap<>();
-    static Map<Skill, Double> classXpBooster4 = new HashMap<>();
-    static Map<Skill, Double> classXpBooster5 = new HashMap<>();
-    static Map<Skill, Double> classXpBooster6 = new HashMap<>();
-    static Map<Skill, Double> classXpBooster7 = new HashMap<>();
-    static Map<Skill, Double> classXpBooster8 = new HashMap<>();
-    static Map<Skill, Double> classXpBooster9 = new HashMap<>();
+    public static Item cfItem1 = WOODEN_AXE;
+    public static Item cfItem2 = WOODEN_PICKAXE;
+    public static Item csItem1 = WOODEN_SWORD;
+    public static Item csItem2 = SHIELD;
+    public static Item csvItem1 = FISHING_ROD;
+    public static Item csvItem2 = APPLE;
+    public static Item caItem1 = SMITHING_TABLE;
+    public static Item caItem2 = OAK_LOG;
+    public static Item cadItem1 = HAY_BLOCK;
+    public static Item cadItem2 = WOODEN_SWORD;
+    public static Item cmItem1 = ENDER_PEARL;
+    public static Item cmItem2 = EXPERIENCE_BOTTLE;
 
-    public static void setClassFighter(Map<String, Object> dependencies1)
+    public static TranslationTextComponent translation1 = new TranslationTextComponent("class.selected.true");
+    public static String alreadySelected = translation1.getString();
+
+    static Map<String, Double> classXpBooster = new HashMap<>();
+
+    public static void setClassSoldier(Map<String, Object> dependencies1)
     {
+
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity)
         {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            ItemStack giveAxe = new ItemStack(STONE_AXE, (int) (1));
-            ItemStack giveLogs = new ItemStack(OAK_LOG, (int) (1));
+            ItemStack giveSword = new ItemStack(csItem1, (int) (1));
+            ItemStack giveShield = new ItemStack(csItem2, (int) (1));
             //-------------------------------------------------------------------------
             if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS"))
             {
                 ClassesSavedData.get(player.server).setPlayerClass(player,
-                        "FIGHTER");
+                        "SOLDIER");
                 player.sendStatusMessage
                         (new StringTextComponent(
                                 TextFormatting.GRAY + "You selected class: " +
-                                        TextFormatting.RED + "Fighter"),
+                                        TextFormatting.RED + "Soldier"),
                                 false);
                 //-------------------------------------------------------------------------
-                classXpBooster.put(COMBAT, 5.0);
+                classXpBooster.put(COMBAT.name, 5.0);
+                classXpBooster.put(ARCHERY.toString(), 5.0);
+                classXpBooster.put(ENDURANCE.toString(), 5.0);
                 Config.setPlayerXpBoost(player,
-                        "classes.fighter",
+                        "classes.soldier",
                         classXpBooster);
-
-                classXpBooster2.put(ENDURANCE, 5.0);
-                Config.setPlayerXpBoost(player,
-                        "classes.fighter2",
-                        classXpBooster2);
                 //-------------------------------------------------------------------------
-                giveAxe.setCount((int) 1);
-                ItemHandlerHelper.giveItemToPlayer((player), giveAxe);
-
-                giveLogs.setCount((int) 12);
-                ItemHandlerHelper.giveItemToPlayer((player), giveLogs);
-            }
-            else {
-                player.sendStatusMessage
-                        (new StringTextComponent(
-                                TextFormatting.DARK_RED + "You have already selected a class."),
-                                false);
-            }
-            player.closeScreen();
-        }
-    }
-
-    public static void setClassSurvivor(Map<String, Object> dependencies1)
-    {
-        Entity entity = (Entity) dependencies1.get("entity");
-        if (entity instanceof ServerPlayerEntity)
-        {
-            ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            ItemStack givePickaxe = new ItemStack(Items.STONE_PICKAXE, (int) (1));
-            ItemStack giveTorches = new ItemStack(Items.TORCH, (int) (1));
-            //-------------------------------------------------------------------------
-            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS"))
-            {
-                ClassesSavedData.get(player.server).setPlayerClass(player, "SURVIVOR");
-                player.sendStatusMessage
-                        (new StringTextComponent(
-                                TextFormatting.GRAY + "You selected class: " +
-                                        TextFormatting.AQUA + "Survivor"),
-                                false);
-                //-------------------------------------------------------------------------
-                classXpBooster.put(COMBAT, 5.0);
-                Config.setPlayerXpBoost(player,
-                        "classes.survivor",
-                        classXpBooster);
-
-                classXpBooster2.put(COMBAT, 5.0);
-                Config.setPlayerXpBoost(player,
-                        "classes.survivor2",
-                        classXpBooster2);
-                //-------------------------------------------------------------------------
-                givePickaxe.setCount((int) 1);
-                ItemHandlerHelper.giveItemToPlayer((player), givePickaxe);
-
-                giveTorches.setCount((int) 16);
-                ItemHandlerHelper.giveItemToPlayer((player), giveTorches);
-            }
-            else {
-                player.sendStatusMessage
-                        (new StringTextComponent(
-                                TextFormatting.DARK_RED + "You have already selected a class."),
-                                false);
-            }
-            player.closeScreen();
-        }
-    }
-
-    public static void setClassGatherer(Map<String, Object> dependencies1)
-    {
-        Entity entity = (Entity) dependencies1.get("entity");
-        if (entity instanceof ServerPlayerEntity)
-        {
-            ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            ItemStack giveStoneSword = new ItemStack(STONE_SWORD, (int) (1));
-            ItemStack giveShield = new ItemStack(SHIELD, (int) (1));
-            //-------------------------------------------------------------------------
-            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS"))
-            {
-                player.abilities.setWalkSpeed((float) (player.abilities.getWalkSpeed() - 0.03));
-                ClassesSavedData.get(player.server).setPlayerClass(player, "WARRIOR");
-                player.sendStatusMessage(new StringTextComponent(
-                        TextFormatting.GRAY + "You selected class: " +
-                                TextFormatting.RED + "Warrior"),
-                        false);
-                //-------------------------------------------------------------------------
-                COMBAT.addLevel(player.getUniqueID(),
-                        10,
-                        "Selected class: Gatherer",
-                        false,
-                        true);
-
-                ENDURANCE.addLevel(player.getUniqueID(),
-                        5,
-                        "Selected class: Gatherer",
-                        false,
-                        true);
-                //-------------------------------------------------------------------------
-                giveStoneSword.setCount((int) 1);
-                ItemHandlerHelper.giveItemToPlayer((player), giveStoneSword);
+                giveSword.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveSword);
 
                 giveShield.setCount((int) 1);
                 ItemHandlerHelper.giveItemToPlayer((player), giveShield);
+            }
+            else {
+                player.sendStatusMessage(
+                        new StringTextComponent(
+                                TextFormatting.DARK_RED + alreadySelected),
+                                false);
+            }
+            player.closeScreen();
+        }
+    }
+
+    public static void setClassSurvivalist(Map<String, Object> dependencies1)
+    {
+        Entity entity = (Entity) dependencies1.get("entity");
+        if (entity instanceof ServerPlayerEntity)
+        {
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
+            ItemStack giveFishingRod = new ItemStack(csvItem1, (int) (1));
+            ItemStack giveApples = new ItemStack(csvItem2, (int) (1));
+            //-------------------------------------------------------------------------
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS"))
+            {
+                ClassesSavedData.get(player.server).setPlayerClass(player,
+                        "SURVIVALIST");
+                player.sendStatusMessage
+                        (new StringTextComponent(
+                                TextFormatting.GRAY + "You selected class: " +
+                                        TextFormatting.GOLD + "Survivalist"),
+                                false);
                 //-------------------------------------------------------------------------
-                classXpBooster.put(COMBAT, 10.0);
+                classXpBooster.put(FARMING.name, 5.0);
+                classXpBooster.put(FISHING.name, 5.0);
+                classXpBooster.put(COOKING.name, 5.0);
                 Config.setPlayerXpBoost(player,
-                        "classes.gatherer",
+                        "classes.survivalist",
                         classXpBooster);
+                //-------------------------------------------------------------------------
+                giveFishingRod.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveFishingRod);
+
+                giveApples.setCount((int) 12);
+                ItemHandlerHelper.giveItemToPlayer((player), giveApples);
+            }
+            else {
+                player.sendStatusMessage
+                        (new StringTextComponent(
+                                TextFormatting.DARK_RED + alreadySelected),
+                                false);
+            }
+            player.closeScreen();
+        }
+    }
+
+    public static void setClassArtisan(Map<String, Object> dependencies1)
+    {
+        Entity entity = (Entity) dependencies1.get("entity");
+        if (entity instanceof ServerPlayerEntity)
+        {
+            ServerPlayerEntity player = (ServerPlayerEntity) entity;
+            ItemStack giveSmithingTable = new ItemStack(caItem1, (int) (1));
+            ItemStack giveWood = new ItemStack(caItem2, (int) (1));
+            //-------------------------------------------------------------------------
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS"))
+            {
+                ClassesSavedData.get(player.server).setPlayerClass(player,
+                        "ARTISAN");
+                player.sendStatusMessage(new StringTextComponent(
+                        TextFormatting.GRAY + "You selected class: " +
+                                TextFormatting.YELLOW + "Artisan"),
+                        false);
+                //-------------------------------------------------------------------------
+                classXpBooster.put(BUILDING.name, 5.0);
+                classXpBooster.put(SMITHING.name, 5.0);
+                classXpBooster.put(CRAFTING.name, 5.0);
+                Config.setPlayerXpBoost(player,
+                        "classes.artisan",
+                        classXpBooster);
+                //-------------------------------------------------------------------------
+                giveSmithingTable.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveSmithingTable);
+
+                giveWood.setCount((int) 12);
+                ItemHandlerHelper.giveItemToPlayer((player), giveWood);
             }
             else {
                 player.sendStatusMessage(new StringTextComponent(
-                        TextFormatting.DARK_RED + "You have already selected a class."),
+                        TextFormatting.DARK_RED + alreadySelected),
                         false);
             }
             player.closeScreen();
         }
     }
 
-    public static void setClassWorker(Map<String, Object> dependencies1)
+    public static void setClassFreeman(Map<String, Object> dependencies1)
     {
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity)
         {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            ItemStack giveBow = new ItemStack(Items.BOW, (int) (1));
-            ItemStack giveArrows = new ItemStack(Items.ARROW, (int) (1));
+            ItemStack giveItem1 = new ItemStack(cfItem1, (int) (1));
+            ItemStack giveItem2 = new ItemStack(cfItem2, (int) (1));
             //-------------------------------------------------------------------------
             if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS"))
             {
-                player.abilities.setWalkSpeed((float) (player.abilities.getWalkSpeed() + 0.03));
-                ClassesSavedData.get(player.server).setPlayerClass(player, "ARCHER");
+                ClassesSavedData.get(player.server).setPlayerClass(player,
+                        "FREEMAN");
                 player.sendStatusMessage(new StringTextComponent(
                         TextFormatting.GRAY + "You selected class: " +
-                                TextFormatting.YELLOW + "Archer"),
+                                TextFormatting.AQUA + "Freeman"),
                         false);
                 //-------------------------------------------------------------------------
-                ARCHERY.addLevel(player.getUniqueID(),
-                        10,
-                        "something",
-                        false,
-                        true);
-
-                AGILITY.addLevel(player.getUniqueID(),
-                        5,
-                        "something1",
-                        false,
-                        true);
-                //-------------------------------------------------------------------------
-                giveBow.setCount((int) 1);
-                ItemHandlerHelper.giveItemToPlayer((player), giveBow);
-
-                giveArrows.setCount((int) 16);
-                ItemHandlerHelper.giveItemToPlayer((player), giveArrows);
-                //-------------------------------------------------------------------------
-                classXpBooster.put(ARCHERY, 10.0);
+                classXpBooster.put(EXCAVATION.name, 5.0);
+                classXpBooster.put(WOODCUTTING.name, 5.0);
+                classXpBooster.put(MINING.name, 5.0);
                 Config.setPlayerXpBoost(player,
-                        "classes.archer",
+                        "classes.freeman",
                         classXpBooster);
+                //-------------------------------------------------------------------------
+                giveItem1.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveItem1);
+
+                giveItem2.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveItem2);
             }
             else {
                 player.sendStatusMessage(new StringTextComponent(
-                        TextFormatting.DARK_RED + "You have already selected a class."),
+                        TextFormatting.DARK_RED + alreadySelected),
                         false);
             }
             player.closeScreen();
         }
     }
-    public static void setClassExplorer(Map<String, Object> dependencies1)
+    public static void setClassAdventurer(Map<String, Object> dependencies1)
     {
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity)
         {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            ItemStack givePotatoes = new ItemStack(POTATO, (int) (1));
-            ItemStack giveHoe = new ItemStack(STONE_HOE, (int) (1));
+            ItemStack giveHay = new ItemStack(cadItem1, (int) (1));
+            ItemStack giveSword = new ItemStack(cadItem2, (int) (1));
             //-------------------------------------------------------------------------
             if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS"))
             {
-                ClassesSavedData.get(player.server).setPlayerClass(player, "FARMER");
+                ClassesSavedData.get(player.server).setPlayerClass(player,
+                        "ADVENTURER");
                 player.sendStatusMessage(new StringTextComponent(
                         TextFormatting.GRAY + "You selected class: " +
-                                TextFormatting.GREEN + "Farmer"),
+                                TextFormatting.GREEN + "Adventurer"),
                         false);
                 //-------------------------------------------------------------------------
-                FARMING.addLevel(player.getUniqueID(),
-                        10,
-                        "something",
-                        false,
-                        true);
-
-                COOKING.addLevel(player.getUniqueID(),
-                        5,
-                        "something1",
-                        false,
-                        true);
-                //-------------------------------------------------------------------------
-                giveHoe.setCount((int) 1);
-                ItemHandlerHelper.giveItemToPlayer((player), giveHoe);
-
-                givePotatoes.setCount((int) 12);
-                ItemHandlerHelper.giveItemToPlayer((player), givePotatoes);
-                //-------------------------------------------------------------------------
-                classXpBooster.put(FARMING, 10.0);
+                classXpBooster.put(AGILITY.name, 5.0);
+                classXpBooster.put(SWIMMING.name, 5.0);
+                classXpBooster.put(FLYING.name, 5.0);
                 Config.setPlayerXpBoost(player,
-                        "classes.farmer",
+                        "classes.adventurer",
                         classXpBooster);
-            }
+                //-------------------------------------------------------------------------
+                giveHay.setCount((int) 5);
+                ItemHandlerHelper.giveItemToPlayer((player), giveHay);
+
+                giveSword.setCount((int) 1);
+                ItemHandlerHelper.giveItemToPlayer((player), giveSword);            }
             else {
                 player.sendStatusMessage(new StringTextComponent(
-                        TextFormatting.DARK_RED + "You have already selected a class."),
+                        TextFormatting.DARK_RED + alreadySelected),
                         false);
             }
             player.closeScreen();
         }
     }
-    public static void setClassMagician(Map<String, Object> dependencies1)
+    public static void setClassMage(Map<String, Object> dependencies1)
     {
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity)
         {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            ItemStack giveIronIngots = new ItemStack(IRON_INGOT, (int) (1));
-            ItemStack giveAnvil = new ItemStack(ANVIL, (int) (1));
+            ItemStack giveEPearls = new ItemStack(cmItem1, (int) (1));
+            ItemStack giveBottleXp = new ItemStack(cmItem2, (int) (1));
             //-------------------------------------------------------------------------
             if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("NO_CLASS"))
             {
-                ClassesSavedData.get(player.server).setPlayerClass(player, "MAGICIAN");
+                ClassesSavedData.get(player.server).setPlayerClass(player,
+                        "MAGE");
                 player.sendStatusMessage(new StringTextComponent(
                         TextFormatting.GRAY + "You selected class: " +
-                                TextFormatting.AQUA + "Magician"),
+                                TextFormatting.BLUE + "Mage"),
                         false);
                 //-------------------------------------------------------------------------
-                SMITHING.addLevel(player.getUniqueID(),
-                        10,
-                        "Selected class: Magician",
-                        false,
-                        true);
-
-                CRAFTING.addLevel(player.getUniqueID(),
-                        10,
-                        "Selected class: Magician",
-                        false,
-                        true);
-                //-------------------------------------------------------------------------
-                giveAnvil.setCount((int) 1);
-                ItemHandlerHelper.giveItemToPlayer((player), giveAnvil);
-
-                giveIronIngots.setCount((int) 12);
-                ItemHandlerHelper.giveItemToPlayer((player), giveIronIngots);
-                //-------------------------------------------------------------------------
-                classXpBooster.put(SMITHING, 10.0);
+                classXpBooster.put(ALCHEMY.name, 5.0);
+                classXpBooster.put(MAGIC.name, 5.0);
+                classXpBooster.put(COMBAT.name, 5.0);
                 Config.setPlayerXpBoost(player,
-                        "classes.magician",
+                        "classes.mage",
                         classXpBooster);
+                //-------------------------------------------------------------------------
+                giveEPearls.setCount((int) 4);
+                ItemHandlerHelper.giveItemToPlayer((player), giveEPearls);
+
+                giveBottleXp.setCount((int) 12);
+                ItemHandlerHelper.giveItemToPlayer((player), giveBottleXp);
             }
             else {
                 player.sendStatusMessage(new StringTextComponent(
-                        TextFormatting.DARK_RED + "You have already selected a class."),
+                        TextFormatting.DARK_RED + alreadySelected),
                         false);
             }
             player.closeScreen();

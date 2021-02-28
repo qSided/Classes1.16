@@ -1,4 +1,38 @@
 {
-    "key.classes": "Classes Menu",
-    "category.classes": "Classes"
+    "key.classes": "Class Menu",
+    "category.classes": "Classes",
+
+    "class.selected.true": "You have already selected a class!",
+
+    "gui.classes.title": "Please select a class. You cannot change classes later.",
+
+    "class.soldier": "Soldier",
+    "class.soldier.archery": "Archery",
+    "class.soldier.combat": "Combat",
+    "class.soldier.endurance": "Endurance",
+
+    "class.freeman": "Freeman",
+    "class.freeman.excavation": "Excavation",
+    "class.freeman.mining": "Mining",
+    "class.freeman.woodcutting": "Woodcutting",
+
+    "class.survivalist": "Survivalist",
+    "class.survivalist.farming": "Farming",
+    "class.survivalist.fishing": "Fishing",
+    "class.survivalist.cooking": "Cooking",
+
+    "class.artisan": "Artisan",
+    "class.artisan.building": "Building",
+    "class.artisan.crafting": "Crafting",
+    "class.artisan.smithing": "Smithing",
+
+    "class.adventurer": "Adventurer",
+    "class.adventurer.agility": "Agility",
+    "class.adventurer.swimming": "Swimming",
+    "class.adventurer.flying": "Flying",
+
+    "class.mage": "Mage",
+    "class.mage.alchemy": "Alchemy",
+    "class.mage.combat": "Combat",
+    "class.mage.magic": "Magic"
 }

@@ -57,12 +57,12 @@ public class OpenGUI {
                 NetworkHooks.openGui((ServerPlayerEntity) _ent, new INamedContainerProvider() {
                     @Override
                     public ITextComponent getDisplayName() {
-                        return new StringTextComponent("ClassSelector");
+                        return new StringTextComponent("FighterSubclassSelector");
                     }
 
                     @Override
                     public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player) {
-                        return new ClassSelectorGuiTwo.GuiContainerMod(id, inventory, new PacketBuffer(Unpooled.buffer()).writeBlockPos(_bpos));
+                        return new ClassSelectorGui.GuiContainerMod(id, inventory, new PacketBuffer(Unpooled.buffer()).writeBlockPos(_bpos));
                     }
                 }, _bpos);
             }
