@@ -3,7 +3,7 @@ package com.qsided.classesmod.gui;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.qsided.classesmod.config.NewClass;
+import com.qsided.classesmod.config.ClassesClass;
 import net.minecraft.util.text.StringTextComponent;
 
 import com.qsided.classesmod.ClassesMod;
@@ -164,7 +164,7 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
 
                 FileReader reader = new FileReader(jsonConfig);
 
-                NewClass class1 = gson.fromJson(reader, NewClass.class);
+                ClassesClass class1 = gson.fromJson(reader, ClassesClass.class);
 
                 reader.close();
 

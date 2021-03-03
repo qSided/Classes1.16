@@ -38,13 +38,13 @@ public class ClassEvents extends ClassesMod.GuiElement {
                     player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem ||
                             player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof PickaxeItem &&
                                     ClassesSavedData.get(player.server)
-                                            .getPlayerClass(player).equals("FREEMAN")) {
+                                            .getPlayerClass(player).equals("FREEMA")) {
                 player.addPotionEffect(new EffectInstance(Effects.HASTE, 60, 0));
             }
         }
         if (entity instanceof ServerPlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("SOLDIER")){
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("SOLDIE")){
                 if (
                         player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof SwordItem ||
                         player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) {
@@ -55,7 +55,7 @@ public class ClassEvents extends ClassesMod.GuiElement {
         }
         if (entity instanceof ServerPlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("MAGICIAN")) {
+            if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("MAGICIA")) {
                 if (((EnchantmentHelper.getEnchantmentLevel(Enchantments.UNBREAKING, ((ServerPlayerEntity) entity).getHeldItemMainhand())) <= 1)) {
                     if (player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof PickaxeItem
                             || player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem

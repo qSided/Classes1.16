@@ -2,8 +2,9 @@ package com.qsided.classesmod;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.qsided.classesmod.config.ClassesClass;
 import com.qsided.classesmod.config.ClassesConfigs;
-import com.qsided.classesmod.config.NewClass;
+import com.qsided.classesmod.config.JsonWrite;
 import com.qsided.classesmod.events.ClassEvents;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
@@ -30,10 +31,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.security.CodeSource;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -41,6 +38,8 @@ import java.util.function.Supplier;
 
 @Mod("classes")
 public class ClassesMod {
+
+    public static File file = FMLPaths.CONFIGDIR.get().resolve("classes.json").toFile();
 
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation("classes", "main"),
@@ -95,25 +94,6 @@ public class ClassesMod {
 
     public ClassesMod() {
 
-        File file = FMLPaths.CONFIGDIR.get().resolve("classes.json").toFile();
-
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.setPrettyPrinting().create();
-
-        List<NewClass> classes = Arrays.asList(
-                new NewClass(1, "Soldier", 5.0),
-                new NewClass(1, "Freeman", 5.0));
-
-        try {
-
-            FileWriter writer = new FileWriter(file);
-            writer.write(String.valueOf(classes));
-            writer.close();
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
 
@@ -146,7 +126,7 @@ public class ClassesMod {
 
     private void setup(final FMLCommonSetupEvent event)
     {
-
+        //JsonWrite.main();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event)

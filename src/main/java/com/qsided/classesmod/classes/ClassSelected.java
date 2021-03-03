@@ -3,7 +3,7 @@ package com.qsided.classesmod.classes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.qsided.classesmod.ClassesMod;
-import com.qsided.classesmod.config.NewClass;
+import com.qsided.classesmod.config.ClassesClass;
 import harmonised.pmmo.config.Config;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -15,8 +15,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +23,28 @@ import static harmonised.pmmo.skills.Skill.*;
 import static net.minecraft.item.Items.*;
 
 public class ClassSelected extends ClassesMod.GuiElement {
+
+    public static String fileName = "classes" + ".json";
+    public static final String path = "classes/";
+
+    public static File file = FMLPaths.CONFIGDIR.get().resolve(path + fileName).toFile();
+
+    public static GsonBuilder builder = new GsonBuilder();
+    public static Gson gson = builder.setPrettyPrinting().create();
+
+    public static BufferedReader br;
+
+    static {
+        try {
+            br = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static final ClassesClass classObj = gson.fromJson(br, ClassesClass.class);
+
+
     public ClassSelected(ClassesMod instance) {
         super(instance, 2);
     }
@@ -46,8 +67,7 @@ public class ClassSelected extends ClassesMod.GuiElement {
 
     static Map<String, Double> classXpBooster = new HashMap<>();
 
-    public static void setClassSoldier(Map<String, Object> dependencies1)
-    {
+    public static void setClassSoldier(Map<String, Object> dependencies1) {
 
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity)
@@ -66,7 +86,7 @@ public class ClassSelected extends ClassesMod.GuiElement {
                                         TextFormatting.RED + "Soldier"),
                                 false);
                 //-------------------------------------------------------------------------
-                classXpBooster.put(COMBAT.name, 5.0);
+                classXpBooster.put(COMBAT.name, classObj.getBooster());
                 classXpBooster.put(ARCHERY.toString(), 5.0);
                 classXpBooster.put(ENDURANCE.toString(), 5.0);
                 Config.setPlayerXpBoost(player,
@@ -89,8 +109,8 @@ public class ClassSelected extends ClassesMod.GuiElement {
         }
     }
 
-    public static void setClassSurvivalist(Map<String, Object> dependencies1)
-    {
+    public static void setClassSurvivalist(Map<String, Object> dependencies1) {
+
         Entity entity = (Entity) dependencies1.get("entity");
         if (entity instanceof ServerPlayerEntity)
         {
