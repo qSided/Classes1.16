@@ -34,5 +34,9 @@
     "class.mage": "Mage",
     "class.mage.alchemy": "Alchemy",
     "class.mage.combat": "Combat",
-    "class.mage.magic": "Magic"
+    "class.mage.magic": "Magic",
+
+    "subclass.archer": "Archer",
+    "subclass.guardian": "Guardian",
+    "subclass.warrior": "Warrior"
 }

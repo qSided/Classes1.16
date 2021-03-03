@@ -86,7 +86,7 @@ public class ClassSelected extends ClassesMod.GuiElement {
                                         TextFormatting.RED + "Soldier"),
                                 false);
                 //-------------------------------------------------------------------------
-                classXpBooster.put(COMBAT.name, classObj.getBooster());
+                classXpBooster.put(COMBAT.toString(), 5.0);
                 classXpBooster.put(ARCHERY.toString(), 5.0);
                 classXpBooster.put(ENDURANCE.toString(), 5.0);
                 Config.setPlayerXpBoost(player,
@@ -128,9 +128,9 @@ public class ClassSelected extends ClassesMod.GuiElement {
                                         TextFormatting.GOLD + "Survivalist"),
                                 false);
                 //-------------------------------------------------------------------------
-                classXpBooster.put(FARMING.name, 5.0);
-                classXpBooster.put(FISHING.name, 5.0);
-                classXpBooster.put(COOKING.name, 5.0);
+                classXpBooster.put(FARMING.toString(), 5.0);
+                classXpBooster.put(FISHING.toString(), 5.0);
+                classXpBooster.put(COOKING.toString(), 5.0);
                 Config.setPlayerXpBoost(player,
                         "classes.survivalist",
                         classXpBooster);
@@ -169,9 +169,9 @@ public class ClassSelected extends ClassesMod.GuiElement {
                                 TextFormatting.YELLOW + "Artisan"),
                         false);
                 //-------------------------------------------------------------------------
-                classXpBooster.put(BUILDING.name, 5.0);
-                classXpBooster.put(SMITHING.name, 5.0);
-                classXpBooster.put(CRAFTING.name, 5.0);
+                classXpBooster.put(BUILDING.toString(), 5.0);
+                classXpBooster.put(SMITHING.toString(), 5.0);
+                classXpBooster.put(CRAFTING.toString(), 5.0);
                 Config.setPlayerXpBoost(player,
                         "classes.artisan",
                         classXpBooster);
@@ -209,9 +209,9 @@ public class ClassSelected extends ClassesMod.GuiElement {
                                 TextFormatting.AQUA + "Freeman"),
                         false);
                 //-------------------------------------------------------------------------
-                classXpBooster.put(EXCAVATION.name, 5.0);
-                classXpBooster.put(WOODCUTTING.name, 5.0);
-                classXpBooster.put(MINING.name, 5.0);
+                classXpBooster.put(EXCAVATION.toString(), 5.0);
+                classXpBooster.put(WOODCUTTING.toString(), 5.0);
+                classXpBooster.put(MINING.toString(), 5.0);
                 Config.setPlayerXpBoost(player,
                         "classes.freeman",
                         classXpBooster);
@@ -248,9 +248,9 @@ public class ClassSelected extends ClassesMod.GuiElement {
                                 TextFormatting.GREEN + "Adventurer"),
                         false);
                 //-------------------------------------------------------------------------
-                classXpBooster.put(AGILITY.name, 5.0);
-                classXpBooster.put(SWIMMING.name, 5.0);
-                classXpBooster.put(FLYING.name, 5.0);
+                classXpBooster.put(AGILITY.toString(), 5.0);
+                classXpBooster.put(SWIMMING.toString(), 5.0);
+                classXpBooster.put(FLYING.toString(), 5.0);
                 Config.setPlayerXpBoost(player,
                         "classes.adventurer",
                         classXpBooster);
@@ -286,9 +286,9 @@ public class ClassSelected extends ClassesMod.GuiElement {
                                 TextFormatting.BLUE + "Mage"),
                         false);
                 //-------------------------------------------------------------------------
-                classXpBooster.put(ALCHEMY.name, 5.0);
-                classXpBooster.put(MAGIC.name, 5.0);
-                classXpBooster.put(COMBAT.name, 5.0);
+                classXpBooster.put(ALCHEMY.toString(), 5.0);
+                classXpBooster.put(MAGIC.toString(), 5.0);
+                classXpBooster.put(COMBAT.toString(), 5.0);
                 Config.setPlayerXpBoost(player,
                         "classes.mage",
                         classXpBooster);

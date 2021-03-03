@@ -7,14 +7,12 @@ public class ClassesClass {
     double booster;
     private List classes;
 
-
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
-
 
     public double getBooster() {
         return booster;
