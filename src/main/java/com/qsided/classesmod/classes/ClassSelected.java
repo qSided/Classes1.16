@@ -42,7 +42,7 @@ public class ClassSelected extends ClassesMod.GuiElement {
         }
     }
 
-    private static final ClassesClass classObj = gson.fromJson(br, ClassesClass.class);
+    // private static final ClassesClass classObj = gson.fromJson(br, ClassesClass.class);
 
 
     public ClassSelected(ClassesMod instance) {
