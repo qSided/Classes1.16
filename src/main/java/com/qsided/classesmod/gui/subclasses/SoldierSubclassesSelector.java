@@ -63,7 +63,7 @@ public class SoldierSubclassesSelector extends ClassesMod.GuiElement {
 
     @SubscribeEvent
     public void registerContainer(RegistryEvent.Register<ContainerType<?>> event) {
-        event.getRegistry().register(containerType.setRegistryName("class_selector"));
+        event.getRegistry().register(containerType.setRegistryName("subclass_selector"));
     }
     public static class GuiContainerModFactory implements IContainerFactory {
         public GuiContainerMod create(int id, PlayerInventory inv, PacketBuffer extraData) {
