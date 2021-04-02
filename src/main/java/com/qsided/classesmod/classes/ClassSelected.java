@@ -3,7 +3,6 @@ package com.qsided.classesmod.classes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.qsided.classesmod.ClassesMod;
-import com.qsided.classesmod.config.ClassesClass;
 import harmonised.pmmo.config.Config;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -41,9 +40,6 @@ public class ClassSelected extends ClassesMod.GuiElement {
             e.printStackTrace();
         }
     }
-
-    // private static final ClassesClass classObj = gson.fromJson(br, ClassesClass.class);
-
 
     public ClassSelected(ClassesMod instance) {
         super(instance, 2);

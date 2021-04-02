@@ -1,10 +1,6 @@
 package com.qsided.classesmod;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.qsided.classesmod.config.ClassesClass;
 import com.qsided.classesmod.config.ClassesConfigs;
-import com.qsided.classesmod.config.JsonWrite;
 import com.qsided.classesmod.events.ClassEvents;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
@@ -124,13 +120,11 @@ public class ClassesMod {
     }
 
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
+    private void setup(final FMLCommonSetupEvent event) {
         //JsonWrite.main();
     }
 
-    private void doClientStuff(final FMLClientSetupEvent event)
-    {
+    private void doClientStuff(final FMLClientSetupEvent event) {
 
     }
 }

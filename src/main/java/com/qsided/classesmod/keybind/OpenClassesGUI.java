@@ -107,16 +107,6 @@ class OpenClasses extends ClassesMod.GuiElement {
                  //           OpenGUI.openGui2(dependencies);
                  //       }
                  //   }
-                 //   if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("FIGHTER")) {
-                 //       if (ClassesSavedData.get(player.server).getPlayerSubclass(player).equals("NO_SUBCLASS")) {
-                 //           OpenGUI.openGui2(dependencies);
-                 //       }
-                 //   }
-                 //   if (ClassesSavedData.get(player.server).getPlayerClass(player).equals("FIGHTER")) {
-                 //       if (ClassesSavedData.get(player.server).getPlayerSubclass(player).equals("NO_SUBCLASS")) {
-                 //           OpenGUI.openGui2(dependencies);
-                 //       }
-                 //   }
                 }
             }
         }
