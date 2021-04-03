@@ -1,8 +1,9 @@
 package com.qsided.classesmod.keybind;
 
 import com.qsided.classesmod.ClassesMod;
-import com.qsided.classesmod.classes.ClassesSavedData;
 import com.qsided.classesmod.gui.OpenGUI;
+import com.qsided.classesmod.playerClasses.ClassesSavedData;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import org.lwjgl.glfw.GLFW;

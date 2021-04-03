@@ -1,9 +1,10 @@
 package com.qsided.classesmod.events;
 
 import com.qsided.classesmod.ClassesMod;
-import com.qsided.classesmod.classes.ClassesSavedData;
 import com.qsided.classesmod.config.ClassesConfigs;
 import com.qsided.classesmod.gui.OpenGUI;
+import com.qsided.classesmod.playerClasses.ClassesSavedData;
+
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;

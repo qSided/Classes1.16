@@ -23,22 +23,22 @@ public class JsonWrite {
             GsonBuilder builder = new GsonBuilder();
             Gson gson = builder.setPrettyPrinting().create();
 
-            ClassesClass classOne = new ClassesClass();
-            classOne.setName("Soldier");
-            classOne.setBooster(5.0);
+            PlayerClassHandler classOne = new PlayerClassHandler();
+//            classOne.setName("Soldier");
+//            classOne.setBooster(5.0);
 
-            ClassesClass classTwo = new ClassesClass();
-            classTwo.setName("Freeman");
-            classTwo.setBooster(5.0);
+            PlayerClassHandler classTwo = new PlayerClassHandler();
+//            classTwo.setName("Freeman");
+//            classTwo.setBooster(5.0);
 
             String class1 = gson.toJson(classOne);
             String class2 = gson.toJson(classTwo);
 
-            ClassesClass classesObj = new ClassesClass();
+            PlayerClassHandler classesObj = new PlayerClassHandler();
             List classes = new ArrayList();
             classes.add(class1);
             classes.add(class2);
-            classesObj.setClasses(classes);
+//            classesObj.setClasses(classes);
 
 
             try {

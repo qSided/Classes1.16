@@ -3,8 +3,9 @@ package com.qsided.classesmod.subclasses.soldier;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.qsided.classesmod.ClassesMod;
-import com.qsided.classesmod.classes.ClassesSavedData;
-import com.qsided.classesmod.config.ClassesClass;
+import com.qsided.classesmod.config.PlayerClassHandler;
+import com.qsided.classesmod.playerClasses.ClassesSavedData;
+
 import harmonised.pmmo.config.Config;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -46,7 +47,7 @@ public class SoldierSubclassSelected extends ClassesMod.GuiElement {
         }
     }
 
-    private static final ClassesClass classObj = gson.fromJson(br, ClassesClass.class);
+    private static final PlayerClassHandler classObj = gson.fromJson(br, PlayerClassHandler.class);
 
 
     public SoldierSubclassSelected(ClassesMod instance) {
