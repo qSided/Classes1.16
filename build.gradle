@@ -44,18 +44,17 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: "com.wynprice.cursemaven"
 
-version = '1.16.5-2.0.4.3'
+version = '1.16.5-2.1.0'
 group = 'com.qsided.classes'
 archivesBaseName = 'Classes'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20201028-1.16.3'
+    mappings channel: 'snapshot', version: '20210309-1.16.5'
     runs {
         client {
             workingDirectory project.file('run')
-            arg "-mixin.config=classes.mixins.json"
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             mods {
@@ -66,7 +65,6 @@ minecraft {
         }
         server {
             workingDirectory project.file('run')
-            arg "-mixin.config=classes.mixins.json"
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             mods {
@@ -91,11 +89,11 @@ minecraft {
     }
 }
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.4-35.1.37'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.1.0'
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    compileOnly fg.deobf("curse.maven:project-mmo:3184724")
-    runtimeOnly fg.deobf("curse.maven:project-mmo:3184724")
+    compileOnly fg.deobf("curse.maven:project-mmo:3258167")
+    runtimeOnly fg.deobf("curse.maven:project-mmo:3258167")
 }
 jar {
     manifest {

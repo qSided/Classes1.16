@@ -65,7 +65,7 @@ public class ClassSelected extends ClassesMod.GuiElement {
 						TextFormatting.GRAY + "You selected class: " + TextFormatting.RED + playerClass.className),
 						false);
 			} else {
-				player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + currentClass), false);
+				player.sendStatusMessage(new StringTextComponent(TextFormatting.DARK_RED + selectedClass), false);
 			}
 			player.closeScreen();
 
