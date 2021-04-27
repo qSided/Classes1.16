@@ -101,8 +101,6 @@ public class ClassesMod {
 
 	public ClassesMod() {
 
-		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-		modEventBus.addListener(this::setup);
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ClassesConfigs.COMMON_SPEC,
 				"classes-common.toml");
