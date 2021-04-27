@@ -16,8 +16,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qsided.classesmod.config.ClassesConfigs;
-import com.qsided.classesmod.config.JSONUtil;
-import com.qsided.classesmod.config.PlayerClassHandler;
 import com.qsided.classesmod.events.ClassEvents;
 
 import net.minecraft.network.PacketBuffer;
@@ -25,7 +23,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -130,9 +127,6 @@ public class ClassesMod {
 
 	// Load stuff on server and client
 	private void setup(final FMLCommonSetupEvent event) {
-		PlayerClassHandler.load();
-		// JsonWrite.main();
-
 	}
 
 	// Load stuff on JUST the client

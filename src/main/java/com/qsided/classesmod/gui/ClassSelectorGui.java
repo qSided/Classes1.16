@@ -36,13 +36,6 @@ import net.minecraftforge.fml.network.IContainerFactory;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import org.lwjgl.opengl.GL11;
-
-import java.io.File;
-import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
 
 @ClassesMod.GuiElement.Tag
 public class ClassSelectorGui extends ClassesMod.GuiElement {
@@ -226,7 +219,6 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
 			String combat2 = translation18.getString();
 			String magic = translation19.getString();
 
-			// TODO change so that items are not hardcoded
 
 			String freemanItem1 = "Item 1";
 			String freemanItem2 = "Item 2";
