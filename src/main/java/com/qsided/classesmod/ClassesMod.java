@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qsided.classesmod.config.ClassesConfigs;
+import com.qsided.classesmod.config.ModJSONUtil;
 import com.qsided.classesmod.events.ClassEvents;
 
 import net.minecraft.network.PacketBuffer;
@@ -98,6 +99,14 @@ public class ClassesMod {
 
 	public ClassesMod() {
 
+		if (!ModJSONUtil.file.exists()) {
+			try {
+				ModJSONUtil.file.createNewFile();
+				ModJSONUtil.generateClassesJSON();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ClassesConfigs.COMMON_SPEC,
 				"classes-common.toml");
@@ -127,6 +136,7 @@ public class ClassesMod {
 
 	// Load stuff on server and client
 	private void setup(final FMLCommonSetupEvent event) {
+		ModJSONUtil.loadClassesJSON(); // We must load this and it must be done after item registry.
 	}
 
 	// Load stuff on JUST the client

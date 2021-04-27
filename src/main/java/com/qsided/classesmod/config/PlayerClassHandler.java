@@ -1,35 +1,22 @@
 package com.qsided.classesmod.config;
 
-import com.qsided.classesmod.playerClasses.PlayerClass;
+import java.util.ArrayList;
 
-import harmonised.pmmo.skills.Skill;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import com.qsided.classesmod.playerClasses.PlayerClass;
 
 public class PlayerClassHandler {
 
-	public static PlayerClass soldier, survivalist;
+	public static ArrayList<PlayerClass> playerClasses = new ArrayList<PlayerClass>();
 
-	// This method needs to be called AFTER items are registered (otherwise the
-	// itemstacks will be null/air)
-	public static void load() {
-		soldier = new PlayerClass("Soldier");
-		survivalist = new PlayerClass("Survivalist");
+	public static void addPlayerClass(PlayerClass pc) {
+		playerClasses.add(pc);
 
-		soldier.addBooster(Skill.COMBAT, 5);
-		soldier.addBooster(Skill.ARCHERY, 5);
-		soldier.addBooster(Skill.ENDURANCE, 5);
-		soldier.addClassItem(new ItemStack(Items.WOODEN_SWORD, 1));// ItemStack(Item, count)
-		soldier.addClassItem(new ItemStack(Items.SHIELD, 1));
+		System.out
+				.println("Player Class Added: " + pc.className + ", " + pc.classXpBoosters + ", " + pc.getClassItems());
+	}
 
-		survivalist.addBooster(Skill.FARMING, 5);
-		survivalist.addBooster(Skill.FISHING, 5);
-		survivalist.addBooster(Skill.COOKING, 5);
-		survivalist.addClassItem(new ItemStack(Items.FISHING_ROD, 1));
-		survivalist.addClassItem(new ItemStack(Items.APPLE, 12));
-
-		// TODO if all this works when hardcoded, the next step will be putting it in to
-		// a JSON.
+	public static ArrayList<PlayerClass> getClasses() {
+		return playerClasses;
 	}
 
 }

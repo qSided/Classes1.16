@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import harmonised.pmmo.config.Config;
-import harmonised.pmmo.skills.Skill;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -13,7 +12,7 @@ public class PlayerClass {
 
 	public String className, translationKey;
 
-	public static HashMap<String, Double> classXpBoosters = new HashMap<String, Double>();
+	public HashMap<String, Double> classXpBoosters = new HashMap<String, Double>();
 
 	private ArrayList<ItemStack> classItems = new ArrayList<ItemStack>();
 
@@ -22,8 +21,8 @@ public class PlayerClass {
 		this.translationKey = "classes." + className;
 	}
 
-	public void addBooster(Skill skill, double value) {
-		classXpBoosters.put(skill.toString(), value);
+	public void addBooster(String skill, double value) {
+		classXpBoosters.put(skill, value);
 	}
 
 	public void applyBoosters(ServerPlayerEntity player) {
