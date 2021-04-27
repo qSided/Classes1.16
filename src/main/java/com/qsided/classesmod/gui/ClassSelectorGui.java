@@ -1,14 +1,18 @@
 package com.qsided.classesmod.gui;
 
+import java.io.File;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
+
+import org.lwjgl.opengl.GL11;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.qsided.classesmod.config.PlayerClassHandler;
-import com.qsided.classesmod.playerClasses.ClassSelected;
-
-import net.minecraft.util.text.StringTextComponent;
-
 import com.qsided.classesmod.ClassesMod;
+import com.qsided.classesmod.config.PlayerClassHandler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
@@ -22,6 +26,7 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -219,15 +224,14 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
 			String combat2 = translation18.getString();
 			String magic = translation19.getString();
 
+			// TODO change so that items are not hardcoded, pull the data from PlayerClassHandler.getPlayerClasses()
 
 			String freemanItem1 = "Item 1";
 			String freemanItem2 = "Item 2";
-			String soldierItem1 = PlayerClassHandler.soldier.getClassItems().get(0).getDisplayName().getString();
-			String soldierItem2 = PlayerClassHandler.soldier.getClassItems().get(1).getDisplayName().getString();
-			String survivalistItem1 = PlayerClassHandler.survivalist.getClassItems().get(0).getDisplayName()
-					.getString();
-			String survivalistItem2 = PlayerClassHandler.survivalist.getClassItems().get(1).getDisplayName()
-					.getString();
+			String soldierItem1 = "Item 1";
+			String soldierItem2 = "Item 2";
+			String survivalistItem1 = "Item 1";
+			String survivalistItem2 = "Item 2";
 			String artisanItem1 = "Item 1";
 			String artisanItem2 = "Item 2";
 			String adventurerItem1 = "Item 1";
@@ -465,7 +469,7 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
 			return;
 		if (buttonID == 0) {
 			{
-				ClassSelected.setPlayerClass(PlayerClassHandler.soldier, entity);
+//				ClassSelected.setPlayerClass(PlayerClassHandler.soldier, entity);
 			}
 		}
 		if (buttonID == 1) {
@@ -477,7 +481,7 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
 		}
 		if (buttonID == 2) {
 			{
-				ClassSelected.setPlayerClass(PlayerClassHandler.survivalist, entity);
+//				ClassSelected.setPlayerClass(PlayerClassHandler.survivalist, entity);
 			}
 		}
 		if (buttonID == 3) {
