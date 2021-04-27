@@ -139,4 +139,6 @@ public class ClassesMod {
 	private void doClientStuff(final FMLClientSetupEvent event) {
 
 	}
+
+	// TODO Send classes config from server to client when client joins (so all the numbers are correct)
 }
