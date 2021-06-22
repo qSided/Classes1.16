@@ -95,49 +95,49 @@ public class ModJSONUtil {
 
 		HashMap<String, Double> class1Skills = new HashMap<String, Double>();
 		HashMap<String, Integer> class1Items = new HashMap<String, Integer>();
-		class1Skills.put("COMBAT", 5.0);
-		class1Skills.put("ARCHERY", 5.0);
-		class1Skills.put("ENDURANCE", 5.0);
+		class1Skills.put(Skill.COMBAT.toString(), 5.0);
+		class1Skills.put(Skill.ARCHERY.toString(), 5.0);
+		class1Skills.put(Skill.ENDURANCE.toString(), 5.0);
 		class1Items.put("minecraft:wooden_sword", 1);
 		class1Items.put("minecraft:shield", 1);
 
 		HashMap<String, Double> class2Skills = new HashMap<String, Double>();
 		HashMap<String, Integer> class2Items = new HashMap<String, Integer>();
-		class2Skills.put("EXCAVATION", 5.0);
-		class2Skills.put("MINING", 5.0);
-		class2Skills.put("WOODCUTTING", 5.0);
+		class2Skills.put(Skill.EXCAVATION.toString(), 5.0);
+		class2Skills.put(Skill.MINING.toString(), 5.0);
+		class2Skills.put(Skill.WOODCUTTING.toString(), 5.0);
 		class2Items.put("minecraft:wooden_axe", 1);
 		class2Items.put("minecraft:wooden_pickaxe", 1);
 
 		HashMap<String, Double> class3Skills = new HashMap<String, Double>();
 		HashMap<String, Integer> class3Items = new HashMap<String, Integer>();
-		class3Skills.put("FARMING", 5.0);
-		class3Skills.put("FISHING", 5.0);
-		class3Skills.put("COOKING", 5.0);
+		class3Skills.put(Skill.FARMING.toString(), 5.0);
+		class3Skills.put(Skill.FISHING.toString(), 5.0);
+		class3Skills.put(Skill.COOKING.toString(), 5.0);
 		class3Items.put("minecraft:fishing_rod", 1);
 		class3Items.put("minecraft:apple", 12);
 
 		HashMap<String, Double> class4Skills = new HashMap<String, Double>();
 		HashMap<String, Integer> class4Items = new HashMap<String, Integer>();
-		class4Skills.put("BUILDING", 5.0);
-		class4Skills.put("CRAFTING", 5.0);
-		class4Skills.put("SMITHING", 5.0);
+		class4Skills.put(Skill.BUILDING.toString(), 5.0);
+		class4Skills.put(Skill.CRAFTING.toString(), 5.0);
+		class4Skills.put(Skill.SMITHING.toString(), 5.0);
 		class4Items.put("minecraft:smithing_table", 1);
 		class4Items.put("minecraft:oak_log", 12);
 
 		HashMap<String, Double> class5Skills = new HashMap<String, Double>();
 		HashMap<String, Integer> class5Items = new HashMap<String, Integer>();
-		class5Skills.put("AGILITY", 5.0);
-		class5Skills.put("SWIMMING", 5.0);
-		class5Skills.put("FLYING", 5.0);
+		class5Skills.put(Skill.AGILITY.toString(), 5.0);
+		class5Skills.put(Skill.SWIMMING.toString(), 5.0);
+		class5Skills.put(Skill.FLYING.toString(), 5.0);
 		class5Items.put("minecraft:hay_block", 5);
 		class5Items.put("minecraft:wooden_sword", 1);
 
 		HashMap<String, Double> class6Skills = new HashMap<String, Double>();
 		HashMap<String, Integer> class6Items = new HashMap<String, Integer>();
-		class6Skills.put("ALCHEMY", 5.0);
-		class6Skills.put("COMBAT", 5.0);
-		class6Skills.put("MAGIC", 5.0);
+		class6Skills.put(Skill.ALCHEMY.toString(), 5.0);
+		class6Skills.put(Skill.COMBAT.toString(), 5.0);
+		class6Skills.put(Skill.MAGIC.toString(), 5.0);
 		class6Items.put("minecraft:ender_pearl", 1);
 		class6Items.put("minecraft:experience_bottle", 14);
 

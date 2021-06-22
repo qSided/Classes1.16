@@ -5,6 +5,7 @@ import com.qsided.classesmod.config.ClassesConfigs;
 import com.qsided.classesmod.gui.OpenGUI;
 import com.qsided.classesmod.playerClasses.ClassesSavedData;
 
+import com.qsided.classesmod.util.SendConfigValues;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
@@ -15,6 +16,8 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -67,6 +70,15 @@ public class ClassEvents extends ClassesMod.GuiElement {
                     }
                 }
             }
+        }
+    }
+
+
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    public void onWorldLogin(final PlayerEvent.PlayerLoggedInEvent event) {
+        if (event.getPlayer().world.isRemote) {
+            PacketHandler.sendToServer(new SendConfigValues());
         }
     }
 

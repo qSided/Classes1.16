@@ -3,6 +3,7 @@ package com.qsided.classesmod.playerClasses;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import harmonised.pmmo.api.APIUtils;
 import harmonised.pmmo.config.Config;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -26,8 +27,7 @@ public class PlayerClass {
 	}
 
 	public void applyBoosters(ServerPlayerEntity player) {
-		Config.setPlayerXpBoost(player, translationKey, classXpBoosters);
-
+		APIUtils.setPlayerXpBoost(player, translationKey, classXpBoosters);
 	}
 
 	public void addClassItem(ItemStack itemStack) {

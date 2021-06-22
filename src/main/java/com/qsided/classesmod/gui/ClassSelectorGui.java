@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import com.qsided.classesmod.playerClasses.ClassSelected;
 import org.lwjgl.opengl.GL11;
 
 import com.google.gson.Gson;
@@ -469,40 +470,40 @@ public class ClassSelectorGui extends ClassesMod.GuiElement {
 			return;
 		if (buttonID == 0) {
 			{
-//				ClassSelected.setPlayerClass(PlayerClassHandler.soldier, entity);
+				ClassSelected.setPlayerClass(PlayerClassHandler.playerClasses.get(0), entity);
 			}
 		}
 		if (buttonID == 1) {
 			{
 				Map<String, Object> dependencies1 = new HashMap<>();
 				dependencies1.put("entity", entity);
-//				ClassSelected.setClassFreeman(dependencies1);
+				ClassSelected.setPlayerClass(PlayerClassHandler.playerClasses.get(1), entity);
 			}
 		}
 		if (buttonID == 2) {
 			{
-//				ClassSelected.setPlayerClass(PlayerClassHandler.survivalist, entity);
+				ClassSelected.setPlayerClass(PlayerClassHandler.playerClasses.get(2), entity);
 			}
 		}
 		if (buttonID == 3) {
 			{
 				Map<String, Object> dependencies1 = new HashMap<>();
 				dependencies1.put("entity", entity);
-//				ClassSelected.setClassArtisan(dependencies1);
+				ClassSelected.setPlayerClass(PlayerClassHandler.playerClasses.get(3), entity);
 			}
 		}
 		if (buttonID == 4) {
 			{
 				Map<String, Object> dependencies1 = new HashMap<>();
 				dependencies1.put("entity", entity);
-//				ClassSelected.setClassAdventurer(dependencies1);
+				ClassSelected.setPlayerClass(PlayerClassHandler.playerClasses.get(4), entity);
 			}
 		}
 		if (buttonID == 5) {
 			{
 				Map<String, Object> dependencies1 = new HashMap<>();
 				dependencies1.put("entity", entity);
-//				ClassSelected.setClassMage(dependencies1);
+				ClassSelected.setPlayerClass(PlayerClassHandler.playerClasses.get(5), entity);
 			}
 		}
 	}

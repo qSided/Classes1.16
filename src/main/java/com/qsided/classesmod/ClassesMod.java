@@ -12,6 +12,9 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.MinecraftGame;
+import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -141,7 +144,6 @@ public class ClassesMod {
 
 	// Load stuff on JUST the client
 	private void doClientStuff(final FMLClientSetupEvent event) {
-
 	}
 
 	// TODO Send classes config from server to client when client joins (so all the numbers are correct)
