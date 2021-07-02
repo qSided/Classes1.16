@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class SendConfigValues {
 
-    HashMap expboost = PlayerClassHandler.getClasses().get(0).classXpBoosters;
+    HashMap expboost = PlayerClassHandler.getClasses().get(0).xpBoosters;
     String name = PlayerClassHandler.getClasses().get(0).className;
     String items = PlayerClassHandler.getClasses().get(0).getClassItems().iterator().toString();
 

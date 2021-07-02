@@ -1,27 +1,23 @@
 package com.qsided.classesmod.playerClasses;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.qsided.classesmod.ClassesMod;
-import harmonised.pmmo.config.Config;
+import com.qsided.classesmod.gui.GuiElement;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.loading.FMLPaths;
-import net.minecraftforge.items.ItemHandlerHelper;
 
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-
-import static harmonised.pmmo.skills.Skill.*;
-import static net.minecraft.item.Items.*;
-
-public class ClassSelected extends ClassesMod.GuiElement {
+public class ClassSelected extends GuiElement {
 
 	public static String fileName = "classes" + ".json";
 	public static final String path = "classes/";

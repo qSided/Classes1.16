@@ -1,9 +1,25 @@
 package com.qsided.classesmod.subclasses.soldier;
 
+import static harmonised.pmmo.skills.Skill.ARCHERY;
+import static harmonised.pmmo.skills.Skill.COMBAT;
+import static harmonised.pmmo.skills.Skill.ENDURANCE;
+import static net.minecraft.item.Items.APPLE;
+import static net.minecraft.item.Items.FISHING_ROD;
+import static net.minecraft.item.Items.OAK_LOG;
+import static net.minecraft.item.Items.SMITHING_TABLE;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.qsided.classesmod.ClassesMod;
 import com.qsided.classesmod.config.PlayerClassHandler;
+import com.qsided.classesmod.gui.GuiElement;
 import com.qsided.classesmod.playerClasses.ClassesSavedData;
 
 import harmonised.pmmo.config.Config;
@@ -17,17 +33,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
-
-import static harmonised.pmmo.skills.Skill.*;
-import static net.minecraft.item.Items.*;
-
-public class SoldierSubclassSelected extends ClassesMod.GuiElement {
+public class SoldierSubclassSelected extends GuiElement {
 
     public static String fileName = "classes" + ".json";
     public static final String path = "classes/";

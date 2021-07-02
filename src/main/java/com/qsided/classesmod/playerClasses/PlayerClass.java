@@ -12,9 +12,9 @@ public class PlayerClass {
 
 	public String className, translationKey;
 
-	public HashMap<String, Double> classXpBoosters = new HashMap<String, Double>();
+	public HashMap<String, Double> xpBoosters = new HashMap<String, Double>();
 
-	private ArrayList<ItemStack> classItems = new ArrayList<ItemStack>();
+	public ArrayList<ItemStack> classItems = new ArrayList<ItemStack>();
 
 	public PlayerClass(String className) {
 		this.className = className;
@@ -22,11 +22,11 @@ public class PlayerClass {
 	}
 
 	public void addBooster(String skill, double value) {
-		classXpBoosters.put(skill, value);
+		xpBoosters.put(skill, value);
 	}
 
 	public void applyBoosters(ServerPlayerEntity player) {
-		APIUtils.setPlayerXpBoost(player, translationKey, classXpBoosters);
+		APIUtils.setPlayerXpBoost(player, translationKey, xpBoosters);
 	}
 
 	public void addClassItem(ItemStack itemStack) {

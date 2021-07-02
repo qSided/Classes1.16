@@ -39,14 +39,13 @@ public class ModJSONUtil {
 
 			JsonArray jsonArray = JsonParser.parseReader(reader).getAsJsonObject().get("classes").getAsJsonArray();
 
-			System.out.println("overhere");
-
 			for (int i = 0; i < jsonArray.size(); i++) {
 				JsonObject entry = jsonArray.get(i).getAsJsonObject();
 				JsonObject entrySkills = entry.get("Skills").getAsJsonObject();
 				JsonObject entryItems = entry.get("Items").getAsJsonObject();
 
-				String name = entry.get("Name").toString();
+				String name = entry.get("Name").getAsString();
+
 				Iterator<String> skillsIt = entrySkills.keySet().iterator();
 				Iterator<String> itemsIt = entryItems.keySet().iterator();
 
@@ -54,7 +53,8 @@ public class ModJSONUtil {
 
 				while (skillsIt.hasNext()) {
 					String skillStr = skillsIt.next();
-					if (Skill.getSkills().containsKey(skillStr)) {
+
+					if (Skill.getSkills().containsKey(skillStr.toLowerCase())) {
 						pc.addBooster(skillStr, entrySkills.get(skillStr).getAsDouble());
 					}
 					skillsIt.remove();
